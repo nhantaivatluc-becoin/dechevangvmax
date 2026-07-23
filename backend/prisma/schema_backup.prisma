@@ -1,0 +1,175 @@
+﻿generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  telegramId String @unique
+
+  username String?
+
+  firstName String?
+
+  gold BigInt @default(1000)
+
+  diamond Float @default(0)
+
+  vip Int @default(0)
+
+  balance Float @default(0)
+
+  referredBy String?
+
+  createdAt DateTime @default(now())
+
+  wallet Wallet?
+
+  transactions Transaction[]
+}
+
+model Wallet {
+  id Int @id @default(autoincrement())
+
+  userId Int @unique
+
+  user User @relation(fields: [userId], references: [id])
+
+  gold BigInt @default(1000)
+
+  diamond Float @default(0)
+
+  balance Float @default(0)
+
+  updatedAt DateTime @updatedAt
+}
+
+model Transaction {
+  id Int @id @default(autoincrement())
+
+  userId Int
+
+  user User @relation(fields: [userId], references: [id])
+
+  type String
+
+  amount Float
+
+  status String @default("pending")
+
+  createdAt DateTime @default(now())
+}
+
+model Referral {
+  id Int @id @default(autoincrement())
+
+  ownerId String
+
+  friendId String
+
+  reward Float @default(0)
+
+  createdAt DateTime @default(now())
+}
+
+model BankConfig {
+  id Int @id @default(autoincrement())
+
+  bankName String
+
+  accountNumber String
+
+  accountOwner String
+
+  content String
+
+  updatedAt DateTime @updatedAt
+}
+
+model Animal {
+  id Int @id @default(autoincrement())
+
+  telegramId String
+
+  type String
+
+  level Int @default(1)
+
+  food Int @default(100)
+
+  goldRate Int @default(10)
+
+  createdAt DateTime @default(now())
+}
+
+model GiftCode {
+  id Int @id @default(autoincrement())
+
+  code String @unique
+
+  gold BigInt @default(0)
+
+  diamond BigInt @default(0)
+
+  limit Int @default(1)
+
+  used Int @default(0)
+
+  createdAt DateTime @default(now())
+}
+model Animal {
+
+  id Int @id @default(autoincrement())
+
+  userId Int
+
+  type String
+
+  level Int @default(1)
+
+  health Int @default(100)
+
+  power Int @default(10)
+
+  lastCollect DateTime @default(now())
+
+  createdAt DateTime @default(now())
+
+
+  user User @relation(
+    fields:[userId],
+    references:[id]
+  )
+
+}
+model PetShop {
+
+ id Int @id @default(autoincrement())
+
+ name String
+
+ price Int
+
+ power Int
+
+ level Int @default(1)
+
+}
+
+
+model Food {
+
+ id Int @id @default(autoincrement())
+
+ name String
+
+ price Int
+
+ heal Int
+
+}
+

@@ -1,0 +1,28 @@
+﻿.guild-warehouse-page{
+
+padding:110px 20px;
+
+min-height:100vh;
+
+background:#172554;
+
+color:white;
+
+text-align:center;
+
+}
+
+
+
+.storage-box{
+
+padding:30px;
+
+border-radius:40px;
+
+border:3px solid gold;
+
+background:#0008;
+
+}
+

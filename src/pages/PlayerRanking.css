@@ -1,0 +1,60 @@
+﻿.player-rank{
+
+min-height:100vh;
+
+padding:120px 20px;
+
+background:
+
+radial-gradient(circle,#1e3a8a,#020617);
+
+color:white;
+
+text-align:center;
+
+}
+
+
+
+.player-card{
+
+max-width:650px;
+
+margin:20px auto;
+
+padding:25px;
+
+border-radius:35px;
+
+background:#0008;
+
+border:2px solid #64748b;
+
+}
+
+
+
+.rank-1{
+
+border:3px solid gold;
+
+box-shadow:0 0 40px gold;
+
+}
+
+
+
+.rank-2{
+
+border:3px solid silver;
+
+}
+
+
+
+.rank-3{
+
+border:3px solid orange;
+
+}
+

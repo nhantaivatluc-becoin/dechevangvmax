@@ -1,0 +1,46 @@
+﻿.bottom-menu{
+
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+right:0;
+
+height:75px;
+
+background:#080014;
+
+border-top:2px solid gold;
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+z-index:9999;
+
+}
+
+
+.bottom-menu button{
+
+background:none;
+
+border:none;
+
+font-size:32px;
+
+cursor:pointer;
+
+}
+
+
+.bottom-menu button:hover{
+
+transform:scale(1.2);
+
+}
+

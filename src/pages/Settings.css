@@ -1,0 +1,92 @@
+﻿.settings-page{
+
+min-height:100vh;
+
+padding:20px;
+
+padding-bottom:120px;
+
+background:#050505;
+
+color:white;
+
+text-align:center;
+
+}
+
+
+
+.settings-page h1{
+
+color:#00ffff;
+
+text-shadow:0 0 20px cyan;
+
+}
+
+
+
+.setting-card{
+
+
+max-width:400px;
+
+margin:20px auto;
+
+padding:25px;
+
+border-radius:25px;
+
+background:#111;
+
+border:2px solid gold;
+
+box-shadow:0 0 20px gold;
+
+
+}
+
+
+
+.setting-card h2{
+
+color:#ffd700;
+
+}
+
+
+
+.setting-card button,
+
+
+.setting-card select{
+
+
+width:90%;
+
+padding:15px;
+
+border-radius:20px;
+
+border:none;
+
+background:#222;
+
+color:white;
+
+font-size:18px;
+
+}
+
+
+
+.setting-card button:hover{
+
+
+background:gold;
+
+color:black;
+
+}
+
+

@@ -1,0 +1,45 @@
+﻿.pet-battle{
+
+padding:30px;
+
+color:white;
+
+text-align:center;
+
+}
+
+
+
+.battle-card{
+
+padding:40px;
+
+max-width:500px;
+
+margin:auto;
+
+background:#170b12;
+
+border:3px solid gold;
+
+border-radius:30px;
+
+}
+
+
+.battle-card button{
+
+background:red;
+
+color:white;
+
+padding:15px 40px;
+
+border-radius:30px;
+
+border:none;
+
+font-weight:bold;
+
+}
+

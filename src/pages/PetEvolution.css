@@ -1,0 +1,66 @@
+﻿.evolution{
+
+padding:30px;
+
+color:white;
+
+text-align:center;
+
+}
+
+
+
+.evo-card{
+
+max-width:500px;
+
+margin:auto;
+
+padding:40px;
+
+background:#160b12;
+
+border:3px solid gold;
+
+border-radius:35px;
+
+box-shadow:0 0 35px gold;
+
+}
+
+
+
+.evo-card h2{
+
+font-size:30px;
+
+color:#ffd700;
+
+}
+
+
+
+.evo-card p{
+
+font-size:20px;
+
+}
+
+
+
+.evo-card button{
+
+padding:18px 40px;
+
+border:none;
+
+border-radius:30px;
+
+background:#ff9900;
+
+font-weight:bold;
+
+font-size:18px;
+
+}
+

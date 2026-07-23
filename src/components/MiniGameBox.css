@@ -1,0 +1,56 @@
+﻿.mini-game-card{
+
+background:#170900;
+
+border:2px solid gold;
+
+border-radius:25px;
+
+padding:25px;
+
+margin:20px;
+
+text-align:center;
+
+color:white;
+
+box-shadow:
+
+0 0 25px #ffd70088;
+
+}
+
+
+
+.mini-game-card h2{
+
+color:#ffd700;
+
+}
+
+
+
+.mini-game-card button{
+
+background:#ffd700;
+
+border:0;
+
+padding:15px 35px;
+
+border-radius:30px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+
+
+.mini-game-card button:hover{
+
+transform:scale(1.05);
+
+}
+

@@ -1,0 +1,58 @@
+﻿.player-box{
+
+width:150px;
+
+padding:20px;
+
+background:#18091f;
+
+border:2px solid gold;
+
+border-radius:25px;
+
+text-align:center;
+
+color:white;
+
+animation:
+float 2s infinite alternate;
+
+box-shadow:
+0 0 25px gold;
+
+}
+
+
+
+.avatar{
+
+font-size:50px;
+
+}
+
+
+
+.player-box span{
+
+color:#00ff66;
+
+}
+
+
+
+@keyframes float{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(-12px);
+
+}
+
+}
+

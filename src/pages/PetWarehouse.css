@@ -1,0 +1,89 @@
+﻿.pet-warehouse{
+padding:30px;
+color:white;
+}
+
+
+.pet-warehouse h1{
+text-align:center;
+font-size:40px;
+color:#ffd700;
+text-shadow:0 0 15px gold;
+}
+
+
+.pet-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:25px;
+
+}
+
+
+.pet-box{
+
+background:
+linear-gradient(
+135deg,
+#24120b,
+#120805
+);
+
+border:2px solid gold;
+
+border-radius:25px;
+
+padding:30px;
+
+text-align:center;
+
+box-shadow:
+0 0 25px rgba(255,215,0,.7);
+
+}
+
+
+.pet-box h2{
+
+color:white;
+
+font-size:26px;
+
+}
+
+
+.pet-box p{
+
+font-size:18px;
+
+}
+
+
+.pet-box button{
+
+margin:5px;
+
+padding:12px 25px;
+
+border-radius:25px;
+
+border:none;
+
+background:#ffd700;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+.pet-box button:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 0 15px gold;
+
+}

@@ -1,0 +1,138 @@
+﻿generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  telegramId String @unique
+  username String?
+  gold BigInt @default(1000)
+  diamond Float @default(0)
+  vip Int @default(0)
+  invite Int @default(0)
+  createdAt DateTime @default(now())
+
+  animals Animal[]
+  giftHistory GiftHistory[]
+  wallets Wallet[]
+  deposits Deposit[]
+  withdraws Withdraw[]
+  vipOrders VipOrder[]
+  missions Mission[]
+}
+
+model Animal {
+  id Int @id @default(autoincrement())
+  userId Int
+  type String
+  level Int @default(1)
+  health Int @default(100)
+  power Int @default(10)
+  lastCollect DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PetShop {
+  id Int @id @default(autoincrement())
+  name String
+  price Int
+  power Int
+  createdAt DateTime @default(now())
+}
+
+model Food {
+  id Int @id @default(autoincrement())
+  name String
+  price Int
+  heal Int
+  createdAt DateTime @default(now())
+}
+
+model GiftCode {
+  id Int @id @default(autoincrement())
+  code String @unique
+  gold BigInt @default(0)
+  diamond Float @default(0)
+  limit Int @default(1)
+  used Int @default(0)
+  createdAt DateTime @default(now())
+
+  history GiftHistory[]
+}
+
+model GiftHistory {
+  id Int @id @default(autoincrement())
+  userId Int
+  giftId Int
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+  gift GiftCode @relation(fields: [giftId], references: [id])
+}
+
+model Wallet {
+  id Int @id @default(autoincrement())
+  userId Int
+  bank String?
+  accountName String?
+  accountNumber String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Deposit {
+  id Int @id @default(autoincrement())
+  userId Int
+  telegramId String?
+  amount Float
+  diamond Float @default(0)
+  money Int?
+  status String @default("PENDING")
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Withdraw {
+  id Int @id @default(autoincrement())
+  userId Int
+  telegramId String?
+  diamond Float
+  amount Float
+  money Int?
+  bank String?
+  account String?
+  owner String?
+  status String @default("PENDING")
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model VipOrder {
+  id Int @id @default(autoincrement())
+  telegramId String
+  vip Int
+  money Int
+  status String @default("PENDING")
+  createdAt DateTime @default(now())
+}
+
+model Mission {
+  id Int @id @default(autoincrement())
+  userId Int
+  title String
+  reward Int @default(0)
+  completed Boolean @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+

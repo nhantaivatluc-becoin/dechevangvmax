@@ -1,0 +1,70 @@
+﻿.guild-page{
+
+padding:110px 20px 100px;
+
+min-height:100vh;
+
+background:
+radial-gradient(circle,#14532d,#020617);
+
+color:white;
+
+text-align:center;
+
+}
+
+
+.guild-card{
+
+padding:30px;
+
+margin:20px 0;
+
+border-radius:40px;
+
+background:#0009;
+
+border:3px solid gold;
+
+box-shadow:0 0 40px gold;
+
+}
+
+
+.create-box input{
+
+padding:15px;
+
+border-radius:30px;
+
+width:80%;
+
+margin:20px;
+
+font-size:18px;
+
+}
+
+
+.create-box{
+
+box-shadow:
+0 0 60px gold;
+
+}
+
+
+button{
+
+padding:16px 40px;
+
+border-radius:40px;
+
+background:#facc15;
+
+font-weight:900;
+
+border:none;
+
+}
+

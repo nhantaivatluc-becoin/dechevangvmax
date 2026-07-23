@@ -1,0 +1,27 @@
+﻿import {useState} from "react";
+import "./App.css";
+
+
+import GameHeader from "./components/GameHeader";
+import MainMenu from "./components/MainMenu";
+import BottomMenu from "./components/BottomMenu";
+
+
+import Home from "./pages/Home";
+import Deposit from "./pages/Deposit";
+import AdminDeposit from "./pages/AdminDeposit";
+
+import AdminVip from "./pages/AdminVip";
+import AdminLogin from "./pages/AdminLogin";
+
+
+import Vip from "./pages/Vip";
+
+
+import Guild from "./pages/Guild";
+import GuildMarket from "./pages/GuildMarket";
+import GuildWarehouse from "./pages/GuildWarehouse";
+import GuildWar from "./pages/GuildWar";
+import GuildBoss from "./pages/GuildBoss";
+import GuildRanking from "./pages/GuildRanking";
+import GuildLand from "./pages/GuildLand";

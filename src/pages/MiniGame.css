@@ -1,0 +1,56 @@
+﻿.mini-game{
+
+min-height:100vh;
+
+padding:100px 25px;
+
+background:
+
+linear-gradient(
+
+180deg,
+
+#220936,
+
+#050008
+
+);
+
+color:white;
+
+text-align:center;
+
+}
+
+
+
+.mini-game h1{
+
+color:#ffd700;
+
+font-size:38px;
+
+text-shadow:0 0 20px gold;
+
+}
+
+
+
+.mini-game button{
+
+margin-top:30px;
+
+padding:18px 45px;
+
+border:none;
+
+border-radius:30px;
+
+background:#ffd700;
+
+font-weight:bold;
+
+font-size:18px;
+
+}
+

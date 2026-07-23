@@ -1,0 +1,30 @@
+﻿.collection-page{
+
+min-height:100vh;
+
+padding:120px 20px 100px;
+
+background:#064e3b;
+
+color:white;
+
+text-align:center;
+
+}
+
+
+
+.collection-card{
+
+margin:15px;
+
+padding:25px;
+
+border-radius:30px;
+
+background:#0008;
+
+border:1px solid gold;
+
+}
+

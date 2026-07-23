@@ -1,0 +1,77 @@
+﻿.pvp-page{
+
+padding:110px 20px 100px;
+
+min-height:100vh;
+
+background:
+
+radial-gradient(circle,#312e81,#020617);
+
+color:white;
+
+text-align:center;
+
+}
+
+
+
+.player-card,
+
+.enemy-card{
+
+
+padding:30px;
+
+border-radius:40px;
+
+margin:20px 0;
+
+background:#0009;
+
+border:3px solid gold;
+
+box-shadow:0 0 40px gold;
+
+}
+
+
+
+.enemy-card{
+
+border-color:red;
+
+box-shadow:0 0 40px red;
+
+}
+
+
+
+.vs{
+
+font-size:50px;
+
+font-weight:900;
+
+color:#fde047;
+
+}
+
+
+
+button{
+
+padding:20px 60px;
+
+border-radius:50px;
+
+background:gold;
+
+font-size:20px;
+
+font-weight:900;
+
+border:none;
+
+}
+

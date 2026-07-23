@@ -1,0 +1,64 @@
+﻿.guild-land-page{
+
+padding:110px 20px 100px;
+
+min-height:100vh;
+
+background:
+
+radial-gradient(circle,#064e3b,#020617);
+
+color:white;
+
+text-align:center;
+
+}
+
+
+
+.land-card{
+
+margin:20px 0;
+
+padding:30px;
+
+border-radius:40px;
+
+background:#0009;
+
+border:3px solid gold;
+
+box-shadow:
+
+0 0 40px gold;
+
+}
+
+
+
+.land-title{
+
+color:#fde047;
+
+font-size:30px;
+
+font-weight:900;
+
+}
+
+
+
+button{
+
+padding:18px 40px;
+
+border-radius:40px;
+
+background:gold;
+
+font-weight:900;
+
+border:none;
+
+}
+

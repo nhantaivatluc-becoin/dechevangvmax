@@ -1,0 +1,49 @@
+﻿.notify{
+
+position:fixed;
+
+top:100px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+background:
+
+linear-gradient(gold,orange);
+
+padding:15px 30px;
+
+border-radius:30px;
+
+font-weight:900;
+
+color:#111;
+
+z-index:999999;
+
+animation:show .4s;
+
+}
+
+
+
+@keyframes show{
+
+
+from{
+
+transform:translateX(-50%) scale(.5);
+
+}
+
+
+to{
+
+transform:translateX(-50%) scale(1);
+
+}
+
+
+}
+
