@@ -1,6 +1,18 @@
 ﻿.wallet-page{
 
-padding:20px;
+min-height:100vh;
+
+padding:15px;
+
+padding-bottom:100px;
+
+background:
+
+radial-gradient(
+circle at top,
+#4b3500,
+#050505
+);
 
 color:white;
 
@@ -8,192 +20,192 @@ color:white;
 
 
 
-.wallet-assets,
+.wallet-page h1{
 
-.bank-card,
+text-align:center;
 
-.bank-info-card,
+color:#ffd700;
 
-.diamond-box{
+}
 
 
-margin:15px 0;
 
-padding:20px;
+.wallet-box{
+
+
+background:#111;
+
+
+border:1px solid #ffd700;
+
+
+border-radius:22px;
+
+
+padding:18px;
+
+
+margin-bottom:15px;
+
+
+}
+
+
+
+.wallet-box h2{
+
+
+text-align:center;
+
+
+color:#ffd700;
+
+
+}
+
+
+
+.asset{
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+padding:12px;
+
+
+background:#181818;
+
+
+border-radius:12px;
+
+
+margin:8px 0;
+
+
+}
+
+
+
+.asset strong{
+
+
+color:#00ff99;
+
+
+}
+
+
+
+input,
+select{
+
+
+width:100%;
+
+
+padding:14px;
+
+
+margin:8px 0;
+
+
+border-radius:15px;
+
+
+background:#222;
+
+
+color:white;
+
+
+border:1px solid #555;
+
+
+}
+
+
+
+button{
+
+
+width:100%;
+
+
+padding:15px;
+
+
+border:0;
+
 
 border-radius:25px;
+
 
 background:
 
 linear-gradient(
-
-145deg,
-
-#071525,
-
-#000
-
+90deg,
+#ffae00,
+#ffe600
 );
 
 
-border:2px solid #00eaff;
-
-
-box-shadow:
-
-0 0 25px rgba(0,234,255,.35);
-
-
-}
-
-
-
-.wallet-assets div{
-
-
-margin:12px 0;
-
-font-size:17px;
-
-
-}
-
-
-
-.wallet-assets strong{
-
-
-display:block;
-
-color:#00ff88;
-
-font-size:22px;
-
-}
-
-
-
-h1,h2{
-
-
-text-align:center;
-
-color:#00eaff;
-
-
-}
-
-
-
-.warning{
-
-
-color:#ff4444;
-
-text-align:center;
-
 font-weight:bold;
 
 
-}
-
-
-
-.bank-info-card input,
-
-.diamond-box input{
-
-
-width:100%;
-
-box-sizing:border-box;
-
-padding:16px;
-
-margin:10px 0;
-
-border-radius:18px;
-
-background:#050505;
-
-border:2px solid #555;
-
-color:white;
-
-font-size:16px;
+margin-top:10px;
 
 
 }
 
 
 
-.bank-info-card input:focus,
-
-.diamond-box input:focus{
+.qr-box{
 
 
-border-color:#00ff88;
+height:180px;
 
 
-}
+background:#222;
 
-
-
-.money-preview{
-
-
-margin-top:15px;
-
-padding:18px;
-
-border-radius:18px;
-
-background:
-
-rgba(0,255,136,.1);
-
-
-text-align:center;
-
-font-size:18px;
-
-
-}
-
-
-
-.money-preview b{
-
-
-color:#00ff88;
-
-font-size:22px;
-
-
-}
-
-
-
-.diamond-box button{
-
-
-width:100%;
-
-padding:17px;
 
 border-radius:20px;
 
-border:none;
 
-background:#00ff88;
+display:flex;
 
-font-size:18px;
 
-font-weight:bold;
+align-items:center;
 
-margin-top:15px;
+
+justify-content:center;
+
+
+text-align:center;
+
+
+font-size:25px;
+
+
+margin:15px 0;
 
 
 }
 
+
+
+@media(max-width:430px){
+
+
+.wallet-box{
+
+padding:14px;
+
+}
+
+
+}
 

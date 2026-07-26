@@ -1,95 +1,80 @@
-﻿import "./AssetBar.css";
-
-import {
-useWallet
-} from "../context/WalletContext";
+﻿import React from "react";
+import "./AssetBar.css";
 
 
 export default function AssetBar(){
 
+const user = {
 
-const {
+gold:1000,
+diamond:0,
+vnd:0,
+vip:0
 
-wallet
-
-}=useWallet();
-
+};
 
 
 return(
 
-
 <div className="asset-bar">
 
 
+<div className="asset-item">
 
-<div className="asset-card gold-card">
-
-<span>
-
-🪙 GOLD
-
-</span>
-
-
-<strong>
-
-{Number(wallet?.gold || 0).toLocaleString()}
-
-</strong>
-
-
-</div>
-
-
-
-
-<div className="asset-card diamond-card">
-
+🪙
 
 <span>
 
-💎 DIAMOND
+{user.gold.toLocaleString()}
 
 </span>
 
-
-<strong>
-
-{Number(wallet?.diamond || 0).toFixed(3)}
-
-</strong>
-
+Gold
 
 </div>
 
 
 
+<div className="asset-item">
 
-
-<div className="asset-card vnd-card">
-
+💎
 
 <span>
 
-🇻🇳 VNĐ
+{user.diamond}
 
 </span>
 
-
-<strong>
-
-{Number(wallet?.vnd || 0).toLocaleString()}đ
-
-</strong>
-
+Diamond
 
 </div>
 
 
 
+<div className="asset-item">
+
+💵
+
+<span>
+
+{user.vnd.toLocaleString()}đ
+
+</span>
+
+VNĐ
+
 </div>
 
+
+
+<div className="asset-item vip">
+
+👑 VIP {user.vip}
+
+</div>
+
+
+</div>
 
 )
 

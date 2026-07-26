@@ -1,56 +1,163 @@
-﻿import "./Shop.css";
-
-import {useState} from "react";
-
-
-export default function Shop(){
+﻿import React,{useEffect,useState} from "react";
+import "./Shop.css";
 
 
-const [gold,setGold]=useState(5000);
-
-const [message,setMessage]=useState("");
-
-
-
-const pets=[
-
+const animals=[
 
 {
-name:"🐺 Sói Bóng Đêm",
-price:1000,
-power:50
+icon:"🐶",
+name:"Chó Shiba",
+price:500,
+power:10,
+bonus:2
 },
 
+{
+icon:"🐱",
+name:"Mèo Anh",
+price:800,
+power:15,
+bonus:3
+},
 
 {
-name:"🐯 Hổ Vàng",
+icon:"🐺",
+name:"Sói",
+price:4000,
+power:60,
+bonus:8
+},
+
+{
+icon:"🦊",
+name:"Cáo",
 price:3000,
-power:150
+power:45,
+bonus:6
 },
 
+{
+icon:"🐯",
+name:"Hổ",
+price:6000,
+power:100,
+bonus:15
+},
 
 {
-name:"🐉 Rồng VIP",
+icon:"🦁",
+name:"Sư tử",
 price:10000,
-power:500
-}
+power:180,
+bonus:25
+},
 
+{
+icon:"🐘",
+name:"Voi",
+price:15000,
+power:250,
+bonus:30
+},
+
+{
+icon:"🦅",
+name:"Đại bàng",
+price:12000,
+power:220,
+bonus:35
+},
+
+{
+icon:"🐼",
+name:"Gấu trúc",
+price:9000,
+power:120,
+bonus:18
+},
+
+{
+icon:"🐋",
+name:"Cá voi",
+price:30000,
+power:500,
+bonus:50
+}
 
 ];
 
 
 
 
-
-function buy(pet){
-
-
-if(gold < pet.price){
+export default function Shop(){
 
 
-setMessage(
-"❌ Không đủ Gold"
+const [user,setUser]=useState({});
+
+
+
+
+function load(){
+
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem("user")||"{}"
+
 );
+
+
+setUser(data);
+
+
+}
+
+
+
+
+useEffect(()=>{
+
+
+load();
+
+
+},[]);
+
+
+
+
+
+
+
+
+function buyPet(animal){
+
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem("user")||"{}"
+
+);
+
+
+
+
+let gold=
+
+Number(data.gold||0);
+
+
+
+
+
+if(gold < animal.price){
+
+
+alert("❌ Không đủ GOLD");
 
 
 return;
@@ -60,14 +167,124 @@ return;
 
 
 
-setGold(
-gold-pet.price
+
+
+data.gold=
+
+gold-animal.price;
+
+
+
+
+
+data.pets=
+
+data.pets||[];
+
+
+
+
+
+data.pets.push({
+
+name:animal.name,
+
+icon:animal.icon,
+
+level:1,
+
+power:animal.power,
+
+bonus:animal.bonus
+
+});
+
+
+
+
+
+
+localStorage.setItem(
+
+"user",
+
+JSON.stringify(data)
+
 );
 
 
 
-setMessage(
-"✅ Đã mua "+pet.name
+load();
+
+
+
+}
+
+
+
+
+
+function buyEnergy(){
+
+
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem("user")||"{}"
+
+);
+
+
+
+
+
+if(Number(data.gold||0)<100){
+
+
+alert("Không đủ GOLD");
+
+
+return;
+
+
+}
+
+
+
+
+
+
+data.gold-=100;
+
+
+
+data.energy=
+
+Number(data.energy||0)+100;
+
+
+
+
+localStorage.setItem(
+
+"user",
+
+JSON.stringify(data)
+
+);
+
+
+
+load();
+
+
+
+alert(
+
+"⚡ +100 ENERGY"
+
 );
 
 
@@ -78,73 +295,126 @@ setMessage(
 
 
 
+
+
+
+
 return(
 
 
-<div className="shop">
+
+<div className="shop-page">
+
+
 
 
 
 <h1>
 
-🏪 CỬA HÀNG ĐẾ CHẾ
+🛒 SHOP THÚ CƯNG
 
 </h1>
 
 
 
-<div className="gold">
 
-🟡 Gold:
+
+
+
+<div className="resource-box">
+
+
+🪙 GOLD:
 
 <b>
 
-{gold}
+{Number(user.gold||0).toLocaleString()}
 
 </b>
+
+
+<br/>
+
+
+⚡ ENERGY:
+
+<b>
+
+{user.energy||0}
+
+</b>
+
 
 </div>
 
 
 
 
-<h2>
-
-🐾 Pet Shop
-
-</h2>
 
 
 
 
-<div className="shop-list">
+<button
+
+className="energy-btn"
+
+onClick={buyEnergy}
+
+>
+
+⚡ MUA 100 ENERGY
+
+<br/>
+
+100 GOLD
+
+</button>
+
+
+
+
+
+
+
+<div className="animal-grid">
 
 
 
 {
 
-pets.map((pet,index)=>(
+animals.map((a,i)=>(
+
 
 
 <div
-className="item"
-key={index}
+
+className="animal-card"
+
+key={i}
+
 >
 
 
-<div className="pet-icon">
 
-{pet.name.split(" ")[0]}
+
+<div className="pet-animation">
+
+
+{a.icon}
 
 </div>
 
 
 
+
+
+
 <h3>
 
-{pet.name}
+{a.name}
 
 </h3>
+
 
 
 
@@ -152,34 +422,40 @@ key={index}
 
 ⚔️ Power:
 
-<b>
-
-{pet.power}
-
-</b>
+{a.power}
 
 </p>
+
+
+<p>
+
+⛏️ Đào:
+
++{a.bonus}%
+
+</p>
+
 
 
 
 <p>
 
-💰 Giá:
+🪙
 
-<b>
+{a.price}
 
-{pet.price}
-
-</b>
-
-Gold
+GOLD
 
 </p>
 
 
 
+
+
 <button
-onClick={()=>buy(pet)}
+
+onClick={()=>buyPet(a)}
+
 >
 
 MUA
@@ -189,6 +465,7 @@ MUA
 
 
 </div>
+
 
 
 ))
@@ -203,31 +480,67 @@ MUA
 
 
 
+
+
 <h2>
 
-⭐ VIP SHOP
+🐾 THÚ CỦA BẠN
 
 </h2>
 
 
 
-<div className="vip-box">
 
 
-<p>
-VIP 1 ⭐
-</p>
-
-<p>
-+10% tốc độ đào vàng
-</p>
+<div className="my-pets">
 
 
-<button>
+{
 
-Nâng VIP
+user.pets?.map((p,i)=>(
 
-</button>
+
+<div
+
+className="owned-pet"
+
+key={i}
+
+>
+
+
+{p.icon}
+
+<b>
+
+{p.name}
+
+</b>
+
+
+<br/>
+
+Level:
+
+{p.level}
+
+
+<br/>
+
+Power:
+
+{p.power}
+
+
+
+</div>
+
+
+))
+
+
+}
+
 
 
 </div>
@@ -235,17 +548,11 @@ Nâng VIP
 
 
 
-<h3>
-
-{message}
-
-</h3>
-
-
-
 </div>
+
 
 
 )
+
 
 }

@@ -1,133 +1,76 @@
-﻿import {useEffect,useRef,useState} from "react";
+﻿import React,{useEffect,useRef} from "react";
 
 
-const musics={
-
-"/":"home.mp3",
-
-"/farm":"farm.mp3",
-
-"/shop":"shop.mp3",
-
-"/vip":"vip.mp3",
-
-"/pvp":"pvp.mp3",
-
-"/wheel":"wheel.mp3"
-
-};
-
-
-
-export default function MusicManager({page="/"} ){
+export default function MusicManager(){
 
 
 const audio=useRef(null);
 
 
-const [enabled,setEnabled]=useState(
 
-localStorage.getItem("music")!=="off"
+useEffect(()=>{
 
+
+let enabled=
+
+localStorage.getItem("music")!=="off";
+
+
+
+if(!enabled)
+return;
+
+
+
+audio.current=new Audio(
+"/music/bgm-home.mp3"
 );
 
 
 
-useEffect(()=>{
+audio.current.loop=true;
 
 
-if(!audio.current)return;
-
-
-audio.current.src=
-
-"/music/"+(musics[page]||"home.mp3");
+audio.current.volume=0.25;
 
 
 
-if(enabled){
+let play=()=>{
 
 audio.current.play()
 .catch(()=>{});
 
-}
+};
 
 
 
-},[page]);
+document.addEventListener(
+"click",
+play,
+{once:true}
+);
 
 
 
+return()=>{
 
-
-useEffect(()=>{
-
-
-if(!audio.current)return;
-
-
-if(enabled){
-
-audio.current.play()
-.catch(()=>{});
-
-}
-
-else{
+if(audio.current){
 
 audio.current.pause();
 
 }
 
+};
 
 
-localStorage.setItem(
-
-"music",
-
-enabled?"on":"off"
-
-);
-
-
-
-},[enabled]);
+},[]);
 
 
 
 
 
-return (
 
-<>
-
-
-<audio
-
-ref={audio}
-
-loop
-
-/>
-
-
-<button
-
-className="music-button"
-
-onClick={()=>setEnabled(!enabled)}
-
->
-
-{enabled?"🔊":"🔇"}
-
-</button>
-
-
-</>
-
-)
+return null;
 
 
 }
-

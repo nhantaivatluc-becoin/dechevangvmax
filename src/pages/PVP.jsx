@@ -1,248 +1,38 @@
-﻿import {useState} from "react";
-import "./PVP.css";
+﻿import React from "react";
 
 
-const enemies=[
 
-
-{
-name:"⚔️ Kỵ Sĩ Bóng Đêm",
-power:5000
-},
-
-
-{
-name:"🔥 Pháp Sư Lửa",
-power:15000
-},
-
-
-{
-name:"🐉 Long Vương",
-power:50000
-}
-
-
-];
-
-
-
-export default function PVP(){
-
-
-const [enemy,setEnemy]=useState(
-
-enemies[0]
-
-);
-
-
-
-const [result,setResult]=useState("");
-
-
-
-const [score,setScore]=useState(
-
-Number(localStorage.getItem("pvpScore"))
-
-||0
-
-);
-
-
-
-const pets=
-
-JSON.parse(
-
-localStorage.getItem("pets")
-
-)||[];
-
-
-
-const pet=
-
-pets.find(
-
-p=>p.active
-
-);
-
-
-
-function fight(){
-
-
-
-let myPower=0;
-
-
-
-if(pet){
-
-myPower=pet.power;
-
-}
-
-
-
-if(myPower>=enemy.power){
-
-
-let newScore=score+100;
-
-
-setScore(newScore);
-
-
-
-localStorage.setItem(
-
-"pvpScore",
-
-newScore
-
-);
-
-
-
-let gold=
-
-Number(localStorage.getItem("gold"))
-
-||0;
-
-
-
-gold+=1000;
-
-
-
-localStorage.setItem(
-
-"gold",
-
-gold
-
-);
-
-
-
-setResult(
-
-"🎉 THẮNG +100 PVP +1000 vàng"
-
-);
-
-
-
-}
-
-
-else{
-
-
-setResult(
-
-"💀 THUA - Cần nâng cấp Pet"
-
-);
-
-
-}
-
-
-
-let next=
-
-enemies[
-
-Math.floor(
-
-Math.random()*enemies.length
-
-)
-
-];
-
-
-setTimeout(()=>{
-
-setEnemy(next);
-
-},1500);
-
-
-
-}
-
+export default function Pvp(){
 
 
 return(
 
-
 <div className="pvp-page">
 
 
-<h1>
-
-⚔️ PVP ARENA
-
-</h1>
-
-
-
-<div className="player-card">
-
-
 <h2>
 
-🐾 Pet của bạn
+⚔ PVP ARENA
 
 </h2>
 
 
-<h3>
 
-{
-
-pet
-
-?
-
-pet.name
-
-:
-
-"Chưa chọn"
-
-}
-
-</h3>
+<div className="battle-card">
 
 
+👤 Người chơi
 
-<p>
 
-⚔️ Power:
+<br/>
 
-{
+⚔
 
-pet
 
-?
+<br/>
 
-pet.power
 
-:
-
-0
-
-}
-
-</p>
+🐲 Pet hỗ trợ
 
 
 
@@ -250,69 +40,37 @@ pet.power
 
 
 
-<div className="vs">
 
-VS
+<button>
 
-</div>
-
-
-
-<div className="enemy-card">
-
-
-<h2>
-
-{enemy.name}
-
-</h2>
-
-
-<p>
-
-⚔️ Power:
-
-{enemy.power}
-
-</p>
-
-
-</div>
-
-
-
-<button
-
-onClick={fight}
-
->
-
-🔥 THAM CHIẾN
+Tìm đối thủ
 
 </button>
 
 
 
-<h2>
 
-{result}
+<div className="rank-box">
 
-</h2>
+🏆 BXH PVP
 
+<br/>
 
+1. Player A
 
-<h3>
+<br/>
 
-🏆 PVP Score:
+2. Player B
 
-{score}
+<br/>
 
-</h3>
-
+3. Player C
 
 
 </div>
 
+
+</div>
 
 )
 

@@ -1,15 +1,19 @@
-﻿export const ADMIN_ACCOUNT={
+﻿export const ADMIN_IDS=[
 
-username:"admin",
+"8454844333"
 
-password:"11122003"
-
-};
+];
 
 
-export function checkAdmin(){
 
-return localStorage.getItem("adminLogin")==="true";
+export function isAdmin(id){
+
+
+return ADMIN_IDS.includes(
+
+String(id)
+
+);
+
 
 }
-

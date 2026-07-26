@@ -1,17 +1,9 @@
-﻿import "./SideMenu.css";
-
-import {
-useState
-} from "react";
+﻿import React,{useState} from "react";
+import {useNavigate} from "react-router-dom";
+import "./SideMenu.css";
 
 
-import {
-useNavigate
-} from "react-router-dom";
-
-
-
-export default function SideMenu(){
+export default function SideMenu({user}){
 
 
 const [open,setOpen]=useState(false);
@@ -21,17 +13,80 @@ const navigate=useNavigate();
 
 
 
-
-function go(path){
-
-
-navigate(path);
+const menu=[
 
 
-setOpen(false);
+{
+icon:"🏠",
+name:"Trang chủ",
+path:"/"
+},
 
 
+{
+icon:"👑",
+name:"VIP",
+path:"/vip"
+},
+
+
+{
+icon:"💰",
+name:"Nạp tiền",
+path:"/deposit"
+},
+
+
+{
+icon:"💼",
+name:"Ví tài sản",
+path:"/wallet"
+},
+
+
+{
+icon:"🏦",
+name:"Rút tiền",
+path:"/withdraw"
+},
+
+
+{
+icon:"📈",
+name:"Chứng khoán",
+path:"/stock"
+},
+
+
+{
+icon:"₿",
+name:"Crypto",
+path:"/crypto"
+},
+
+
+{
+icon:"💬",
+name:"Chat thế giới",
+path:"/chat"
+},
+
+
+{
+icon:"👥",
+name:"Bạn bè",
+path:"/friends"
+},
+
+
+{
+icon:"🏰",
+name:"Bang hội",
+path:"/guild"
 }
+
+
+];
 
 
 
@@ -45,9 +100,9 @@ return(
 
 <button
 
-className="menu-btn"
+className="menu-button"
 
-onClick={()=>setOpen(true)}
+onClick={()=>setOpen(!open)}
 
 >
 
@@ -56,22 +111,6 @@ onClick={()=>setOpen(true)}
 </button>
 
 
-
-
-{
-
-open &&
-
-<div
-
-className="overlay"
-
-onClick={()=>setOpen(false)}
-
-></div>
-
-
-}
 
 
 
@@ -85,7 +124,7 @@ open
 
 ?
 
-"side-menu open"
+"side-menu active"
 
 :
 
@@ -98,185 +137,31 @@ open
 
 
 
-<div className="brand">
+
+<div className="menu-user">
 
 
-👑
+<div className="avatar">
 
-
-<h2>
-
-ĐẾ CHẾ VÀNG
-
-</h2>
-
+👤
 
 </div>
-
-
-
-
-
-
-<button onClick={()=>go("/home")}>
-
-🏠 Home
-
-</button>
-
-
-
-<button onClick={()=>go("/mining")}>
-
-⛏️ Đào vàng
-
-</button>
-
-
-
-<button onClick={()=>go("/pet")}>
-
-🐾 Pet
-
-</button>
-
-
-
-<button onClick={()=>go("/vip")}>
-
-⭐ VIP
-
-</button>
-
-
-
-<button onClick={()=>go("/wallet")}>
-
-💎 Ví tiền
-
-</button>
-
-
-
-
 
 
 <h3>
 
-🎲 GAME DÂN GIAN
+{user?.username || "User"}
 
 </h3>
 
 
+<p>
 
-<div className="game">
+VIP {user?.vip || 0}
 
-🃏 Tiến Lên
+</p>
 
-</div>
 
-
-<div className="game">
-
-🀄 Cờ Tướng
-
-</div>
-
-
-
-<div className="game">
-
-🐴 Cờ Cá Ngựa
-
-</div>
-
-
-
-<div className="game">
-
-🎯 Bầu Cua
-
-</div>
-
-
-
-<div className="game">
-
-🎲 Xóc Đĩa
-
-</div>
-
-
-
-<div className="game">
-
-🪁 Ô Ăn Quan
-
-</div>
-
-
-
-
-
-
-<h3>
-
-🎮 GAME HIỆN ĐẠI
-
-</h3>
-
-
-
-<div className="game">
-
-🎣 Bắn Cá
-
-</div>
-
-
-<div className="game">
-
-⚔️ PvP Arena
-
-</div>
-
-
-
-<div className="game">
-
-🏰 Xây Thành
-
-</div>
-
-
-
-<div className="game">
-
-🚗 Đua Xe
-
-</div>
-
-
-
-<div className="game">
-
-🎰 Slot
-
-</div>
-
-
-
-<div className="game">
-
-♠️ Poker
-
-</div>
-
-
-
-<div className="game">
-
-🌎 MMORPG
 
 </div>
 
@@ -286,18 +171,101 @@ open
 
 
 
-<hr/>
+
+<div className="menu-list">
 
 
-<button>
+{
 
-⚙️ Cài đặt
+menu.map((item,index)=>(
 
-</button>
+
+<div
+
+className="menu-item"
+
+key={index}
+
+onClick={()=>{
+
+
+navigate(item.path);
+
+setOpen(false);
+
+
+}}
+
+>
+
+
+<span>
+
+{item.icon}
+
+</span>
+
+
+{item.name}
+
+
+</div>
+
+
+))
+
+
+}
+
+
+</div>
+
+
+
+
+
+
+
+<div
+
+className="admin-area"
+
+onClick={()=>navigate("/admin-login")}
+
+>
+
+
+🔐 ADMIN LOGIN
+
+
+</div>
+
+
+
 
 
 
 </div>
+
+
+
+
+
+{
+
+open &&
+
+<div
+
+className="menu-overlay"
+
+onClick={()=>setOpen(false)}
+
+></div>
+
+
+}
+
 
 
 
@@ -308,3 +276,4 @@ open
 
 
 }
+

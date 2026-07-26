@@ -1,122 +1,231 @@
 ﻿import React, {useState} from "react";
-import "./Wheel.css";
+import GameHeader from "../components/GameHeader";
+import BottomMenu from "../components/BottomMenu";
 
 
 export default function Wheel(){
 
 
-const [spinning,setSpinning]=useState(false);
-const [result,setResult]=useState("");
+const [gold,setGold]=useState(1000);
+
+const [energy,setEnergy]=useState(100);
+
+const [effects,setEffects]=useState([]);
 
 
 
-const prizes=[
+const mineGold=()=>{
 
-"💰 +100 Gold",
-"💎 +1 Diamond",
-"🎁 VIP",
-"💰 +500 Gold",
-"⚡ Energy"
 
-];
+if(energy<=0) return;
 
 
 
-function spin(){
+const amount=Math.floor(Math.random()*5)+5;
 
 
-if(spinning)return;
+setGold(prev=>prev+amount);
 
 
-setSpinning(true);
-setResult("");
+setEnergy(prev=>prev-1);
+
+
+
+const id=Date.now();
+
+
+
+setEffects(prev=>[
+
+...prev,
+
+{
+id,
+text:+ GOLD
+}
+
+]);
+
 
 
 setTimeout(()=>{
 
 
-const win =
-prizes[
-Math.floor(
-Math.random()*prizes.length
+setEffects(prev=>
+
+prev.filter(
+
+item=>item.id!==id
+
 )
-];
+
+);
 
 
-setResult(win);
-
-setSpinning(false);
+},1200);
 
 
-},2000);
 
+};
 
-}
 
 
 
 return (
 
-<div className="wheel-page">
+<div className="mine-page">
+
+
+<GameHeader
+
+gold={gold}
+
+diamond={0}
+
+vip={0}
+
+/>
+
+
+
+<div className="mine-container">
+
 
 
 <h1>
-🎡 VÒNG QUAY MAY MẮN
+
+⛏️ KHU MỎ VÀNG
+
 </h1>
 
 
 
-<div className="wheel">
+<div className="mine-area">
 
 
-🎡
+<div className="mine-icon">
+
+⛰️
 
 </div>
+
+
+
+{
+
+effects.map(item=>(
+
+<div
+
+key={item.id}
+
+className="mine-effect"
+
+>
+
+{item.text}
+
+</div>
+
+))
+
+}
 
 
 
 <button
 
-className="spin-button"
+className="big-mine-button"
 
-onClick={spin}
-
-disabled={spinning}
+onClick={mineGold}
 
 >
 
+⛏️
 
-{
-
-spinning
-
-?
-
-"🎡 ĐANG QUAY..."
-
-:
-
-"QUAY NGAY"
-
-}
-
+ĐÀO VÀNG
 
 </button>
 
 
 
-{
+</div>
 
-result &&
 
-<div className="result-box">
 
-{result}
+
+<div className="energy-box">
+
+
+⚡ Năng lượng
+
+
+<b>
+
+{energy}/100
+
+</b>
+
+
 
 </div>
 
-}
 
+
+
+<div className="mine-info">
+
+
+<div>
+
+🔥
+
+<br/>
+
+Tốc độ đào
+
+<br/>
+
+<b>
+
++5 GOLD/lần
+
+</b>
+
+</div>
+
+
+
+<div>
+
+⏱️
+
+<br/>
+
+Auto Mine
+
+<br/>
+
+<b>
+
++0.50/phút
+
+</b>
+
+</div>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+<BottomMenu/>
 
 
 </div>

@@ -1,15 +1,49 @@
 ﻿.bottom-menu{
 
+
 position:fixed;
 
-bottom:0;
 
-left:0;
-
-right:0;
+left:50%;
 
 
-height:72px;
+bottom:-3px;
+
+
+transform:translateX(-50%);
+
+
+
+width:100%;
+
+
+max-width:720px;
+
+
+
+height:70px;
+
+
+
+background:
+
+linear-gradient(
+
+180deg,
+
+#171717,
+
+#050505
+
+);
+
+
+
+border:1px solid #ffd700;
+
+
+border-radius:25px 25px 0 0;
+
 
 
 display:flex;
@@ -21,44 +55,35 @@ align-items:center;
 justify-content:space-around;
 
 
-background:
 
-rgba(0,0,0,.95);
-
-
-border-top:
-
-2px solid #ffd700;
+z-index:9999;
 
 
-z-index:99999;
 
+box-shadow:
 
-padding-bottom:
+0 -5px 20px rgba(255,215,0,.15);
 
-env(safe-area-inset-bottom);
-
-
-box-sizing:border-box;
-
-
-overflow:hidden;
 
 
 }
 
 
 
-.menu-item,
 
 
-.menu-toggle{
+.bottom-menu a,
 
 
-width:20%;
+.menu-bottom-btn{
 
 
-height:65px;
+flex:1;
+
+
+
+height:100%;
+
 
 
 display:flex;
@@ -67,65 +92,41 @@ display:flex;
 flex-direction:column;
 
 
+justify-content:center;
+
+
 align-items:center;
 
-
-justify-content:center;
 
 
 text-decoration:none;
 
 
+
+background:none;
+
+
+border:none;
+
+
+
 color:white;
 
 
-}
+
+font-size:20px;
 
 
 
-.menu-item span,
+cursor:pointer;
 
-.menu-toggle{
-
-font-size:25px;
-
-
-}
-
-
-
-.menu-item small{
-
-
-font-size:11px;
-
-
-color:#aaa;
-
-
-margin-top:3px;
 
 
 }
 
 
 
-.menu-item.active span{
-
-
-filter:
-
-drop-shadow(0 0 10px gold);
-
-
-}
-
-
-
-.menu-item.active small{
-
-
-color:#ffd700;
+.bottom-menu span{
 
 
 font-weight:bold;
@@ -135,20 +136,65 @@ font-weight:bold;
 
 
 
-.menu-toggle{
+.bottom-menu .icon{
 
 
-color:#ffd700;
+font-size:22px;
 
 
-cursor:pointer;
+line-height:25px;
 
 
 }
 
 
 
-@media(max-width:360px){
+.bottom-menu a span:last-child,
+
+
+.menu-bottom-btn span:last-child{
+
+
+font-size:11px;
+
+
+margin-top:3px;
+
+
+}
+
+
+
+
+
+.bottom-menu a:hover,
+
+
+.menu-bottom-btn:hover{
+
+
+color:#ffd700;
+
+
+}
+
+
+
+
+.admin-btn{
+
+
+color:#ffd700!important;
+
+
+}
+
+
+
+
+
+@media(max-width:600px){
+
 
 
 .bottom-menu{
@@ -157,54 +203,42 @@ cursor:pointer;
 height:65px;
 
 
-}
-
-
-
-.menu-item span,
-
-.menu-toggle{
-
-
-font-size:22px;
+border-radius:20px 20px 0 0;
 
 
 }
 
 
 
-.menu-item small{
 
 
-font-size:9px;
+.bottom-menu .icon{
 
 
-}
-
-
-}
-
-
-
-@media(min-width:500px){
-
-
-.bottom-menu{
-
-
-max-width:500px;
-
-
-left:50%;
-
-
-transform:translateX(-50%);
-
-
-border-radius:25px 25px 0 0;
+font-size:19px;
 
 
 }
 
 
+
+
+
+.bottom-menu a span:last-child,
+
+
+.menu-bottom-btn span:last-child{
+
+
+font-size:10px;
+
+
 }
+
+
+
+}
+
+
+
+

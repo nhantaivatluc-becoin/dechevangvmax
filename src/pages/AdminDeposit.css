@@ -1,50 +1,86 @@
-﻿.admin-deposit-page{
+﻿.admin-page{
 
-padding:110px 20px;
-
-min-height:100vh;
-
-background:
-
-radial-gradient(circle,#450a0a,#020617);
+padding:15px;
 
 color:white;
 
+}
+
+
+
+.admin-page h1{
+
 text-align:center;
 
-}
-
-
-
-.deposit-card{
-
-padding:35px;
-
-border-radius:45px;
-
-background:#0008;
-
-border:3px solid gold;
-
-box-shadow:0 0 50px gold;
+color:#ffd700;
 
 }
 
 
 
-button{
+.order-card{
 
-margin:15px;
 
-padding:18px 40px;
+background:#151515;
 
-border-radius:40px;
 
-font-weight:900;
+border:1px solid gold;
+
+
+border-radius:20px;
+
+
+padding:15px;
+
+
+margin-bottom:15px;
+
+
+}
+
+
+
+.order-card button{
+
 
 border:none;
 
-background:gold;
+
+border-radius:15px;
+
+
+padding:12px 20px;
+
+
+margin:5px;
+
+
+font-weight:bold;
+
 
 }
+
+
+
+.approve{
+
+
+background:#00cc66;
+
+
+}
+
+
+
+.reject{
+
+
+background:#ff3333;
+
+
+color:white;
+
+
+}
+
 

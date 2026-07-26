@@ -1,62 +1,148 @@
-﻿import "./PetShop.css";
+﻿import React from "react";
+
+
+const shopPets=[
+
+
+{
+icon:"🐶",
+name:"Chó Vàng",
+price:"100.000 Gold",
+rarity:"Thường"
+},
+
+
+{
+icon:"🐱",
+name:"Mèo May Mắn",
+price:"300.000 Gold",
+rarity:"Hiếm"
+},
+
+
+{
+icon:"🐯",
+name:"Hổ Vàng",
+price:"1.000.000 Gold",
+rarity:"VIP"
+},
+
+
+{
+icon:"🐲",
+name:"Rồng Vàng",
+price:"5.000.000 Gold",
+rarity:"Huyền Thoại"
+},
+
+
+{
+icon:"🦅",
+name:"Đại Bàng",
+price:"2.000.000 Gold",
+rarity:"Cao Cấp"
+},
+
+
+{
+icon:"🦁",
+name:"Sư Tử Vàng",
+price:"3.000.000 Gold",
+rarity:"Siêu Cấp"
+}
+
+
+];
+
 
 
 export default function PetShop(){
 
 
-const buy=()=>{
-
-localStorage.setItem(
-
-"activePet",
-
-JSON.stringify({
-
-name:"🐉 Rồng Lửa",
-
-power:10000
-
-})
-
-);
-
-alert("Đã mua Pet");
-
-};
-
-
-
 return(
 
-<div className="pet-shop">
-
-
-<h1>
-🛒 SHOP PET
-</h1>
-
-
-<div className="shop-card">
+<div className="pet-page">
 
 
 <h2>
-🐉 Rồng Lửa
+
+🛒 SHOP THÚ
+
 </h2>
 
 
+
+
+<div className="pet-grid">
+
+
+{
+
+shopPets.map((pet,index)=>(
+
+
+<div
+
+className="pet-card"
+
+key={index}
+
+>
+
+
+<div className="pet-icon">
+
+{pet.icon}
+
+</div>
+
+
+
+<h3>
+
+{pet.name}
+
+</h3>
+
+
+
 <p>
-⚔️ Power 10000
+
+⭐ {pet.rarity}
+
 </p>
 
 
-<button onClick={buy}>
 
-Mua Pet
+<p>
+
+💰 {pet.price}
+
+</p>
+
+
+
+
+<button>
+
+MUA THÚ
 
 </button>
 
 
+
 </div>
+
+
+))
+
+
+}
+
+
+
+</div>
+
 
 
 </div>

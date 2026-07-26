@@ -1,302 +1,158 @@
-﻿import {useState} from "react";
+﻿import React,{useState} from "react";
 import "./BattleArena.css";
 
 
 export default function BattleArena(){
 
+const [fight,setFight]=useState(false);
+const [hp,setHp]=useState(100);
 
-const [boss,setBoss]=useState({
 
-name:"🐉 Long Thần",
+const startFight=()=>{
 
-hp:10000,
+setFight(true);
 
-max:10000
+setTimeout(()=>{
 
-});
+setHp(prev=>prev-10);
 
+},2000);
 
+};
 
-const [heroes]=useState(
 
-JSON.parse(
 
-localStorage.getItem("heroes")
-
-)
-
-||[
-
-{
-
-name:"Kiếm Sĩ",
-
-power:500
-
-},
-
-{
-
-name:"Pháp Sư",
-
-power:800
-
-}
-
-]
-
-);
-
-
-
-const [damage,setDamage]=useState(0);
-
-const [effect,setEffect]=useState("");
-
-const [reward,setReward]=useState(0);
-
-
-
-
-
-function attack(){
-
-
-const dmg=
-
-heroes.reduce(
-
-(a,b)=>a+b.power,
-
-0
-
-)
-
-+
-
-Math.floor(Math.random()*500);
-
-
-
-const hp=Math.max(
-
-0,
-
-boss.hp-dmg
-
-);
-
-
-
-setBoss({
-
-...boss,
-
-hp
-
-});
-
-
-
-setDamage(dmg);
-
-
-
-setEffect("⚔️ Đội quân tấn công!");
-
-
-
-
-if(hp<=0){
-
-
-setReward(reward+1000);
-
-
-setEffect(
-
-"🏆 Hạ Boss! Nhận 1000 Gold"
-
-);
-
-
-setBoss({
-
-...boss,
-
-hp:boss.max
-
-});
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-return(
-
+return (
 
 <div className="arena-page">
 
 
-<div className="arena-glass">
-
-
+<header className="arena-header">
 
 <h1>
-
-⚔️ CHIẾN TRƯỜNG BANG
-
+⚔ BATTLE ARENA
 </h1>
 
+</header>
 
 
 
-<div className="battle-field">
+<section className="arena-card">
 
 
+<div className="hero">
 
-<div className="hero-team">
-
-
-{
-
-heroes.map((h,i)=>(
-
-
-<div
-
-className="fighter"
-
-key={i}
-
->
-
-
-🧙
-
-<br/>
-
-{h.name}
-
-</div>
-
-
-))
-
-
-}
-
-</div>
-
-
-
-
-
-<div className="boss-fight">
-
-
-<div className="boss-icon">
-
-🐉
-
-</div>
-
+🧙‍♂️
 
 <h2>
-
-{boss.name}
-
+Hero Lv1
 </h2>
 
 
+<div className="hp">
 
-<div className="hp-bar">
+❤️ HP {hp}/100
+
+</div>
 
 
-<div
+<div>
 
-style={{
+⚡ Energy 100
 
-width:
-
-(boss.hp/boss.max*100)+"%"
-
-}}
-
-/>
+</div>
 
 
 </div>
 
 
 
-<p>
+<div className="vs">
 
-❤️ {boss.hp}/{boss.max}
-
-</p>
-
+VS
 
 </div>
 
 
 
+<div className="enemy">
+
+🐉
+
+<h2>
+Dragon Boss
+</h2>
+
+
+<div>
+❤️ HP 1000
 </div>
 
+
+<div>
+🔥 Boss Level 1
+</div>
+
+
+</div>
+
+
+</section>
 
 
 
 
 <button
-
-onClick={attack}
-
+className="fight-btn"
+onClick={startFight}
 >
 
-⚔️ Tấn Công
+{
+fight
+?
+"⚔ ĐANG CHIẾN ĐẤU"
+:
+"🎯 TÌM TRẬN"
+}
 
 </button>
 
 
 
-
-<div className="damage">
-
-
-{effect}
+<section className="reward">
 
 
-<br/>
-
-💥 Sát thương:
-
-{damage}
+<h2>
+🎁 Phần thưởng
+</h2>
 
 
-<br/>
+<div>
 
-🎁 Thưởng:
-
-{reward}
-
+🪙 +100 Gold
 
 </div>
 
 
+<div>
+
+💎 +1 Diamond
 
 </div>
 
 
+<div>
+
+⭐ +50 EXP
+
 </div>
 
+
+</section>
+
+
+
+</div>
 
 )
 

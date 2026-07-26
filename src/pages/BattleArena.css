@@ -1,234 +1,169 @@
 ﻿.arena-page{
 
 min-height:100vh;
-
+background:#080808;
+color:white;
+font-family:Arial;
 padding:20px;
-
-background:
-
-radial-gradient(circle,#450a0a,#020617);
+padding-bottom:90px;
 
 }
 
 
-
-.arena-glass{
-
-
-max-width:700px;
-
-
-margin:auto;
-
-
-padding:30px;
-
-
-border-radius:45px;
-
-
-background:
-
-rgba(255,255,255,.1);
-
-
-backdrop-filter:
-
-blur(30px);
-
-
-border:
-
-2px solid red;
-
-
-box-shadow:
-
-0 0 70px red;
-
-
-}
-
-
-
-.arena-glass h1{
-
+.arena-header{
 
 text-align:center;
+border-bottom:2px solid #ffd400;
+
+}
 
 
-color:#ffd700;
+.arena-header h1{
 
+color:#ffd400;
 
 }
 
 
 
-.battle-field{
+.arena-card{
 
-
-height:300px;
-
-
+margin:30px auto;
+width:95%;
+background:#111;
+border:2px solid #ffd400;
+border-radius:30px;
+padding:25px;
 display:flex;
-
-
-justify-content:space-between;
-
-
+justify-content:space-around;
 align-items:center;
-
-
-}
-
-
-
-.fighter{
-
-
-font-size:45px;
-
-
-animation:
-
-fightMove 1s infinite alternate;
-
+text-align:center;
 
 }
 
 
 
-.boss-icon{
+.hero,
+.enemy{
 
-
-font-size:80px;
-
-
-animation:
-
-bossShake .8s infinite;
-
+width:40%;
+background:#050505;
+border-radius:25px;
+padding:20px;
 
 }
 
 
 
-.hp-bar{
+.hero{
+
+border:1px solid #00ff66;
+
+}
 
 
-height:25px;
 
+.enemy{
+
+border:1px solid #ff3333;
+
+}
+
+
+
+.hero:first-letter,
+.enemy:first-letter{
+
+font-size:60px;
+
+}
+
+
+
+.vs{
+
+font-size:35px;
+font-weight:bold;
+color:#ffd400;
+
+}
+
+
+
+.hp{
+
+color:#00ff66;
+margin:10px;
+
+}
+
+
+
+.fight-btn{
+
+display:block;
+width:90%;
+margin:auto;
+padding:18px;
+border:0;
+border-radius:40px;
+font-size:18px;
+font-weight:bold;
+background:linear-gradient(90deg,#ff9900,#ffff00);
+
+}
+
+
+
+.reward{
+
+width:90%;
+margin:30px auto;
+
+}
+
+
+
+.reward h2{
+
+color:#ffd400;
+
+}
+
+
+
+.reward div{
 
 background:#111;
-
-
 border-radius:20px;
-
-
-overflow:hidden;
-
+padding:15px;
+margin-top:10px;
 
 }
 
 
 
-.hp-bar div{
+@media(max-width:500px){
 
+.arena-card{
 
-height:100%;
-
-
-background:red;
-
+padding:15px;
 
 }
 
 
+.hero,
+.enemy{
 
-.arena-glass button{
-
-
-width:100%;
-
-
-padding:18px;
-
-
-border:none;
-
-
-border-radius:30px;
-
-
-background:
-
-linear-gradient(red,orange);
-
-
-font-weight:900;
-
-
-color:white;
-
+padding:10px;
+font-size:13px;
 
 }
 
 
+.vs{
 
-.damage{
-
-
-margin-top:20px;
-
-
-padding:20px;
-
-
-border-radius:25px;
-
-
-background:
-
-rgba(0,0,0,.4);
-
-
-color:#ffd700;
-
-
-text-align:center;
-
-
-}
-
-
-
-@keyframes fightMove{
-
-
-from{
-
-transform:translateX(-10px);
-
-}
-
-
-to{
-
-transform:translateX(10px);
-
-}
-
-
-}
-
-
-
-@keyframes bossShake{
-
-
-50%{
-
-transform:scale(1.1);
+font-size:22px;
 
 }
 

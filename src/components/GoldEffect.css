@@ -1,55 +1,39 @@
-﻿.gold-effect{
+﻿.gold-fall{
+
 
 position:fixed;
 
-top:0;
+top:120px;
 
-left:0;
+font-size:25px;
 
-right:0;
+z-index:10;
 
-pointer-events:none;
+animation:fall 3s linear;
 
-z-index:99999;
 
 }
 
 
 
-.fly-gold{
-
-position:absolute;
-
-top:80px;
-
-font-size:22px;
-
-font-weight:900;
-
-animation:fly 2s forwards;
-
-}
+@keyframes fall{
 
 
+from{
 
-@keyframes fly{
-
-
-0%{
+transform:translateY(0);
 
 opacity:1;
 
-transform:translateY(0) scale(1);
-
 }
 
 
 
-100%{
+to{
+
+transform:translateY(500px);
 
 opacity:0;
-
-transform:translateY(-250px) scale(1.5);
 
 }
 

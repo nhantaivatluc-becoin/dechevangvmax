@@ -1,167 +1,57 @@
-﻿.mining-page{
+﻿.mine-buttons{
 
+display:flex;
 
-min-height:100vh;
+gap:10px;
 
-
-padding:25px;
-
-
-padding-top:100px;
-
-
-color:white;
-
-
-background:
-
-linear-gradient(
-180deg,
-#090400,
-#4b2300
-);
-
+margin-top:20px;
 
 }
 
 
+.mine-buttons button{
 
+flex:1;
 
-.mining-page h1{
+padding:16px;
 
+border-radius:20px;
 
-text-align:center;
+border:none;
 
-
-color:#ffd700;
-
-
-}
-
-
-
-
-.mine-card{
-
-
-margin-top:30px;
-
-
-padding:35px;
-
-
-border-radius:35px;
-
-
-background:#000b;
-
-
-text-align:center;
-
-
-box-shadow:
-
-0 0 40px orange;
-
-
-}
-
-
-
-
-.mine-animation{
-
-
-font-size:110px;
-
-
-animation:
-
-float 2s infinite;
-
-
-}
-
-
-
-
-@keyframes float{
-
-
-50%{
-
-
-transform:translateY(-15px);
-
-
-}
-
-
-}
-
-
-
-
-
-.mine-card button{
-
-
-padding:18px 50px;
-
-
-border:0;
-
-
-border-radius:40px;
-
-
-background:
-
-linear-gradient(
-45deg,
-orange,
-yellow
-);
-
-
-font-size:18px;
-
+background:#ffd700;
 
 font-weight:bold;
 
+font-size:16px;
+
+}
+
+
+.mine-buttons .active{
+
+background:#00ff88;
 
 }
 
 
 
 
-.mine-card b{
+@media(max-width:600px){
 
 
-color:#00ff66;
+.mine-buttons{
 
-
-}
-
-
-
-
-
-.info-card{
-
-
-margin-top:25px;
-
-
-padding:25px;
-
-
-background:#ffffff12;
-
-
-border-radius:25px;
-
+flex-direction:column;
 
 }
 
 
+.mine-buttons button{
+
+width:100%;
+
+}
+
+
+}

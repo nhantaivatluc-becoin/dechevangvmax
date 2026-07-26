@@ -1,21 +1,95 @@
-﻿.farm{
+﻿.farm-page{
 
 
 min-height:100vh;
 
-padding:20px;
+background:
+
+radial-gradient(circle,#183000,#050505);
 
 color:white;
 
+padding:20px;
 
-background:
+padding-bottom:100px;
 
-linear-gradient(
-180deg,
-#061500,
-#174000
-);
 
+}
+
+
+
+.farm-page h1{
+
+
+text-align:center;
+
+color:#ffd400;
+
+
+}
+
+
+
+.farm-banner{
+
+
+margin-top:20px;
+
+background:#111;
+
+border:2px solid #ffd400;
+
+border-radius:25px;
+
+padding:25px;
+
+text-align:center;
+
+font-size:18px;
+
+
+}
+
+
+
+.farm-banner:first-letter{
+
+
+font-size:50px;
+
+
+}
+
+
+
+
+.pet-list{
+
+
+margin-top:20px;
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:12px;
+
+
+}
+
+
+
+
+.pet-card{
+
+
+background:#111;
+
+border-radius:20px;
+
+border:1px solid #333;
+
+padding:15px;
 
 text-align:center;
 
@@ -24,107 +98,14 @@ text-align:center;
 
 
 
-.farm h1{
+.pet-icon{
 
 
-color:#ffd700;
+font-size:25px;
 
+color:#ffd400;
 
-}
-
-
-
-.pet-card{
-
-
-background:
-
-rgba(255,255,255,.12);
-
-
-padding:25px;
-
-
-border-radius:25px;
-
-
-box-shadow:
-
-0 0 30px #66ff00;
-
-
-}
-
-
-
-.pet{
-
-
-font-size:100px;
-
-
-animation:
-
-petmove 2s infinite;
-
-
-}
-
-
-
-@keyframes petmove{
-
-
-50%{
-
-
-transform:
-
-translateY(-15px);
-
-
-}
-
-
-}
-
-
-
-.pet-card button{
-
-
-display:block;
-
-
-width:80%;
-
-
-margin:15px auto;
-
-
-padding:15px;
-
-
-border:0;
-
-
-border-radius:30px;
-
-
-background:
-
-linear-gradient(
-45deg,
-#ff9900,
-#ffe600
-);
-
-
-
-font-weight:bold;
-
-
-font-size:16px;
+margin-bottom:10px;
 
 
 }
@@ -134,29 +115,64 @@ font-size:16px;
 .pet-card b{
 
 
-color:#ffd700;
+color:#ffd400;
+
+font-size:20px;
 
 
 }
 
 
 
-.farm-info{
+
+.pet-card button,
 
 
-margin-top:25px;
+.food-box button{
 
 
-background:#0008;
+background:#ffd400;
+
+border:none;
+
+border-radius:25px;
+
+padding:12px 20px;
+
+font-weight:bold;
 
 
-padding:20px;
+}
 
+
+
+
+
+.food-box{
+
+
+margin-top:20px;
+
+background:#111;
 
 border-radius:20px;
 
+padding:20px;
+
+text-align:center;
+
+border:1px solid #333;
+
 
 }
 
 
+
+.food-box h2{
+
+
+color:#ffd400;
+
+
+}
 

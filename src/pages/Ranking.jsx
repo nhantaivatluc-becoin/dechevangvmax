@@ -1,127 +1,70 @@
-﻿import "./Ranking.css";
+﻿import React,{useEffect,useState} from "react";
+import "./Ranking.css";
 
 
 export default function Ranking(){
 
 
-const pets=
-
-JSON.parse(
-
-localStorage.getItem("pets")
-
-)||[];
+const [players,setPlayers]=useState([]);
 
 
 
-const gold=
-
-Number(
-
-localStorage.getItem("gold")
-
-)||0;
+useEffect(()=>{
 
 
-
-const diamond=
-
-Number(
-
-localStorage.getItem("diamond")
-
-)||0;
-
-
-
-const petPower=
-
-pets.reduce(
-
-(total,p)=>
-
-total+(p.power||0),
-
-0
-
-);
-
-
-
-const players=[
-
+let data=[
 
 {
-
-name:"Bạn",
-
-level:1,
-
-power:petPower,
-
-gold,
-
-diamond
-
+rank:1,
+name:"WhaleKing",
+vip:15,
+gold:9999999,
+power:5000
 },
 
-
 {
-
-name:"Chiến Binh Rồng",
-
-level:50,
-
-power:99999,
-
-gold:500000,
-
-diamond:500
-
+rank:2,
+name:"DragonLord",
+vip:12,
+gold:5000000,
+power:3500
 },
 
-
 {
-
-name:"Thợ Săn Huyền Thoại",
-
-level:35,
-
-power:50000,
-
-gold:200000,
-
-diamond:200
-
+rank:3,
+name:"GoldMaster",
+vip:10,
+gold:3000000,
+power:2800
 },
 
+{
+rank:4,
+name:"MinerPro",
+vip:8,
+gold:1500000,
+power:2000
+},
 
 {
-
-name:"Kỵ Sĩ Bóng Đêm",
-
-level:20,
-
-power:20000,
-
-gold:50000,
-
-diamond:50
-
+rank:5,
+name:"Kiên",
+vip:5,
+gold:1000000,
+power:1500
 }
-
 
 ];
 
 
+setPlayers(data);
 
-const rank=[...players].sort(
 
-(a,b)=>
 
-b.power-a.power
+},[]);
 
-);
+
+
 
 
 
@@ -131,122 +74,115 @@ return(
 <div className="ranking-page">
 
 
+
 <h1>
 
-🏆 XẾP HẠNG CÁ NHÂN
+🏆 BẢNG XẾP HẠNG
 
 </h1>
 
 
 
+
+<div className="top-player">
+
+
+🥇
+
+TOP SERVER
+
+
+</div>
+
+
+
+
+
 {
 
-rank.map((p,i)=>(
-
+players.map((p,i)=>(
 
 
 <div
 
-key={i}
-
 className={
 
-"player-card player-"+(i+1)
+i<3?
+
+"rank-card top":
+
+"rank-card"
 
 }
+
+key={i}
 
 >
 
 
+
 <div className="rank">
 
-
-{
-
-i===0
-
-?
-
-"👑"
-
-:
-
-i===1
-
-?
-
-"🥈"
-
-:
-
-i===2
-
-?
-
-"🥉"
-
-:
-
-"#"+(i+1)
-
-}
-
+#{p.rank}
 
 </div>
 
 
 
-<div>
+<div className="avatar">
+
+👤
+
+</div>
 
 
-<h2>
+
+<div className="info">
+
+
+<h3>
 
 {p.name}
 
-</h2>
+</h3>
+
 
 
 <p>
 
-⭐ Level:
-
-{p.level}
+👑 VIP {p.vip}
 
 </p>
 
 
 <p>
 
-⚔️ Power:
+🪙 {p.gold.toLocaleString()}
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+<div className="power">
+
+⚔️
 
 {p.power}
 
-</p>
-
-
-<p>
-
-💰 Vàng:
-
-{p.gold}
-
-</p>
-
-
-<p>
-
-💎 Kim cương:
-
-{p.diamond}
-
-</p>
-
-
 </div>
 
 
 
+
 </div>
+
 
 
 ))
@@ -259,6 +195,9 @@ i===2
 </div>
 
 
+
 )
+
+
 
 }

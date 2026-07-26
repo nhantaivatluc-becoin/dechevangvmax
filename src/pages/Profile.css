@@ -1,265 +1,140 @@
 ﻿.profile-page{
 
-
 min-height:100vh;
-
-
-padding:30px;
-
-
-background:
-
-linear-gradient(
-
-180deg,
-
-#260039,
-
-#080010
-
-);
-
-
+background:#080808;
 color:white;
-
-
-display:flex;
-
-justify-content:center;
-
+padding-bottom:90px;
+font-family:Arial;
 
 }
 
 
 
-
-.profile-card{
-
-
-width:380px;
-
-
-background:#14091d;
-
-
-border:3px solid gold;
-
-
-border-radius:35px;
-
-
-padding:30px;
-
+.profile-header{
 
 text-align:center;
-
-
-box-shadow:
-
-0 0 40px gold;
-
-
-animation:
-
-profileGlow 3s infinite;
-
+padding:30px;
+border-bottom:2px solid #ffd400;
 
 }
 
 
 
-@keyframes profileGlow{
+.profile-avatar{
 
-
-50%{
-
-
-box-shadow:
-
-0 0 70px #ffd900;
-
-
-}
-
-
-}
-
-
-
-
-.avatar-frame{
-
-
-width:130px;
-
-
-height:130px;
-
-
+width:100px;
+height:100px;
 margin:auto;
-
-
 border-radius:50%;
-
-
-background:#ffd900;
-
-
+background:#222;
 display:flex;
-
-
 align-items:center;
-
-
 justify-content:center;
-
-
-font-size:70px;
-
-
-border:8px solid white;
-
+font-size:60px;
 
 }
 
 
 
+.profile-header h1{
 
-.vip{
-
-
-background:#ffd900;
-
-
-color:black;
-
-
-padding:10px 30px;
-
-
-border-radius:30px;
-
-
-display:inline-block;
-
-
-font-weight:bold;
-
+color:#ffd400;
 
 }
 
 
 
-.stats{
-
+.profile-stats{
 
 display:grid;
-
-
-grid-template-columns:1fr 1fr;
-
-
-gap:15px;
-
-
-margin-top:25px;
-
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+width:90%;
+margin:20px auto;
 
 }
 
 
 
-.stats div{
+.profile-stats div{
 
-
-background:#281030;
-
-
-border:1px solid gold;
-
-
+background:#111;
+border:1px solid #ffd400;
 border-radius:20px;
-
-
 padding:15px;
-
+text-align:center;
 
 }
 
 
 
-.stats b{
-
+.profile-stats strong{
 
 display:block;
-
-
-color:#ffd900;
-
-
-font-size:22px;
-
+color:#ffd400;
 
 }
 
 
 
-.battle-info{
+.profile-stats small{
 
-
-margin-top:25px;
-
-
-border-top:1px solid gold;
-
-
-padding-top:20px;
-
+font-size:11px;
 
 }
 
 
 
-.profile-buttons button{
+.assets,
+.achievement{
+
+width:90%;
+margin:25px auto;
+
+}
 
 
-width:100%;
+
+.assets h2,
+.achievement h2{
+
+color:#ffd400;
+
+}
 
 
-margin:10px;
+
+.asset-box{
+
+background:#111;
+border:1px solid #333;
+border-radius:20px;
+padding:18px;
+margin-top:10px;
+display:flex;
+justify-content:space-between;
+
+}
 
 
+
+.achievement div{
+
+background:#111;
 padding:15px;
-
-
-border-radius:30px;
-
-
-border:none;
-
-
-background:#ffd900;
-
-
-font-weight:bold;
-
+margin-top:10px;
+border-radius:15px;
 
 }
-
 
 
 @media(max-width:500px){
 
+.profile-stats{
 
-.profile-card{
-
-
-width:90%;
-
+grid-template-columns:repeat(3,1fr);
 
 }
-
-
 
 }
 

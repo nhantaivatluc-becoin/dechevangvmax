@@ -1,379 +1,27 @@
-﻿import "./Wallet.css";
-
-import {useState} from "react";
-
-import {useGame} from "../store/GameStore";
-
-import BankSelector from "../components/BankSelector";
-import QRUpload from "../components/QRUpload";
-import WithdrawHistory from "../components/WithdrawHistory";
-import WithdrawRule from "../components/WithdrawRule";
-import WithdrawNotice from "../components/WithdrawNotice";
-
+﻿import React,{useContext} from "react";
+import "./Wallet.css";
 
 export default function Wallet(){
 
-
-const {
-
-gold,
-
-diamond,
-
-cashValue,
-
-setDiamond
-
-}=useGame();
-
-
-
-const [bankInfo,setBankInfo]=useState({});
-
-const [qr,setQr]=useState(null);
-
-const [account,setAccount]=useState("");
-
-const [owner,setOwner]=useState("");
-
-const [amount,setAmount]=useState("");
-
-const [loading,setLoading]=useState(false);
-
-
-
-const money = Number(amount || 0) * 250;
-
-
-
-
-const withdraw = async()=>{
-
-
-const value=Number(amount);
-
-
-
-if(!bankInfo.bank){
-
-alert("🏦 Vui lòng chọn ngân hàng");
-
-return;
-
-}
-
-
-
-if(value < 100){
-
-alert("⚠️ Tối thiểu rút 100 Diamond");
-
-return;
-
-}
-
-
-
-if(value > Number(diamond)){
-
-alert("❌ Diamond không đủ");
-
-return;
-
-}
-
-
-
-if(!qr && (!account || !owner)){
-
-
-alert(
-"📷 Tải QR hoặc nhập STK + họ tên"
-);
-
-
-return;
-
-}
-
-
-
-try{
-
-
-setLoading(true);
-
-
-
-const res=await fetch(
-
-"http://localhost:3000/api/withdraw",
-
-{
-
-
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
-
-
-body:JSON.stringify({
-
-
-userId:1,
-
-diamond:value,
-
-bank:bankInfo.bank,
-
-account,
-
-owner,
-
-qrImage:qr
-
-
-})
-
-
-}
-
-);
-
-
-
-const data=await res.json();
-
-
-
-if(!res.ok){
-
-alert(data.message);
-
-return;
-
-}
-
-
-
-setDiamond(
-
-Number(diamond)-value
-
-);
-
-
-
-setAmount("");
-
-setAccount("");
-
-setOwner("");
-
-
-
-alert(
-"✅ Gửi yêu cầu rút thành công"
-);
-
-
-
-}
-
-catch(err){
-
-console.log(err);
-
-alert(
-"❌ Lỗi kết nối server"
-);
-
-}
-
-
-finally{
-
-setLoading(false);
-
-}
-
-
-};
-
-
-
-
-return(
-
+return (
 
 <div className="wallet-page">
 
 
 <h1>
-💎 VÍ CỦA BẠN
+💎 VÍ TÀI SẢN
 </h1>
 
 
 
-<div className="wallet-assets">
-
-
-<div>
-
-🟡 GOLD
-
-<strong>
-
-{Number(gold).toLocaleString()}
-
-</strong>
-
-</div>
-
-
-
-<div>
-
-💎 DIAMOND
-
-<strong>
-
-{Number(diamond).toFixed(6)}
-
-</strong>
-
-</div>
-
-
-
-<div>
-
-💵 VNĐ
-
-<strong>
-
-{Number(cashValue).toLocaleString()} đ
-
-</strong>
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div className="bank-card">
-
-
-<h2>
-
-🏦 NGÂN HÀNG NHẬN TIỀN
-
-</h2>
-
-
-<BankSelector
-
-onChange={setBankInfo}
-
-/>
-
-
-{
-
-!bankInfo.bank &&
-
-<p className="warning">
-
-⚠️ Bắt buộc chọn ngân hàng
-
-</p>
-
-}
-
-
-</div>
-
-
-
-
-
-<QRUpload
-
-onChange={setQr}
-
-/>
-
-
-
-
-
-
-<div className="bank-info-card">
-
-
-<h2>
-
-💳 THÔNG TIN TÀI KHOẢN
-
-</h2>
-
-
-
-
-<input
-
-placeholder="Số tài khoản ngân hàng"
-
-value={account}
-
-onChange={e=>
-
-setAccount(e.target.value)
-
-}
-
-/>
-
-
-
-
-<input
-
-placeholder="Họ tên viết liền không dấu"
-
-value={owner}
-
-onChange={e=>
-
-setOwner(
-
-e.target.value
-
-.replace(/[^a-zA-Z]/g,"")
-
-.toUpperCase()
-
-)
-
-}
-
-/>
-
-
-
+<div className="wallet-box">
+
+<h3>
+🪙 GOLD
+</h3>
 
 <p>
-
-Ví dụ: NGUYENVANA
-
+0 GOLD
 </p>
 
 
@@ -381,114 +29,53 @@ Ví dụ: NGUYENVANA
 
 
 
+<div className="wallet-box">
 
+<h3>
+💎 KIM CƯƠNG
+</h3>
 
-
-<div className="diamond-box">
-
-
-<h2>
-
-💎 NHẬP DIAMOND RÚT
-
-</h2>
-
-
-
-<input
-
-type="number"
-
-placeholder="Tối thiểu 100 Diamond"
-
-value={amount}
-
-onChange={e=>
-
-setAmount(e.target.value)
-
-}
-
-/>
-
-
-
-
-<div className="money-preview">
-
-
-💎 Diamond:
-
-<b>
-
-{Number(amount||0).toFixed(2)}
-
-</b>
-
-
-
-<br/>
-
-
-💵 Nhận:
-
-<b>
-
-{money.toLocaleString()} VNĐ
-
-</b>
+<p>
+0 DIAMOND
+</p>
 
 
 </div>
 
 
 
-<button
+<div className="wallet-box">
 
-disabled={loading || !bankInfo.bank}
+<h3>
+🔄 QUY ĐỔI
+</h3>
 
-onClick={withdraw}
-
->
-
-
-{
-
-loading ?
-
-"⏳ ĐANG GỬI"
-
-:
-
-"💰 RÚT TIỀN"
-
-}
-
-
-
-</button>
-
+<p>
+1.800.000 GOLD = 0.01 DIAMOND
+</p>
 
 
 </div>
 
 
 
+<div className="wallet-box">
 
+<h3>
+📜 LỊCH SỬ
+</h3>
 
-<WithdrawRule/>
-
-<WithdrawNotice/>
-
-<WithdrawHistory/>
-
-
+<p>
+Chưa có giao dịch
+</p>
 
 
 </div>
 
+
+
+</div>
 
 )
-
 
 }

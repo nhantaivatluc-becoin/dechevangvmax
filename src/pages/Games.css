@@ -1,26 +1,14 @@
 ﻿.games-page{
 
-
 min-height:100vh;
 
+padding:15px;
 
-padding:25px;
+padding-bottom:100px;
 
-
-padding-top:100px;
-
-
-background:
-
-linear-gradient(
-180deg,
-#080400,
-#452000
-);
-
+background:#080808;
 
 color:white;
-
 
 }
 
@@ -28,106 +16,65 @@ color:white;
 
 .games-page h1{
 
-
 text-align:center;
-
 
 color:#ffd700;
 
-
 }
 
 
 
-.sub{
+.game-card{
 
+display:flex;
 
-text-align:center;
-
-
-}
-
-
-
-.games-list{
-
-
-display:grid;
-
-
-grid-template-columns:
-
-repeat(2,1fr);
-
+align-items:center;
 
 gap:15px;
 
+padding:15px;
 
-margin-top:25px;
+margin-bottom:12px;
 
+background:#151515;
 
-}
+border:1px solid #ffd700;
 
-
-
-.game-box{
-
-
-padding:20px;
-
-
-border-radius:25px;
-
-
-background:#000b;
-
-
-box-shadow:
-
-0 0 20px orange;
-
-
-text-align:center;
-
+border-radius:18px;
 
 }
 
 
 
-.game-box h2{
+.game-icon{
 
-
-color:#ffd700;
-
+font-size:35px;
 
 }
 
 
 
-.game-box button{
+.game-card span{
+
+flex:1;
+
+font-size:18px;
+
+}
 
 
-padding:12px 25px;
 
+.game-card button{
+
+background:#ffd700;
 
 border:0;
 
+padding:10px 20px;
 
-border-radius:30px;
-
-
-background:
-
-linear-gradient(
-45deg,
-orange,
-yellow
-);
-
+border-radius:20px;
 
 font-weight:bold;
 
-
 }
-
 

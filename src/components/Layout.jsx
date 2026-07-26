@@ -1,25 +1,34 @@
-﻿import BottomMenu from "./BottomMenu";
+﻿import React from "react";
+import { Outlet } from "react-router-dom";
+
+import BottomMenu from "./BottomMenu";
+import HamburgerMenu from "./HamburgerMenu";
+
+import "./Layout.css";
 
 
-export default function Layout({children}){
+export default function Layout(){
+
+return (
+
+<div className="game-layout">
 
 
-return(
+<main className="game-content">
+
+<Outlet />
+
+</main>
 
 
-<div>
+<HamburgerMenu />
 
 
-{children}
-
-
-<BottomMenu/>
+<BottomMenu />
 
 
 </div>
 
-
-)
-
+);
 
 }

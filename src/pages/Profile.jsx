@@ -1,223 +1,157 @@
 ﻿import React from "react";
-
-import {useNavigate} from "react-router-dom";
-
 import "./Profile.css";
-
 
 export default function Profile(){
 
-
-const nav=useNavigate();
-
-
-
-const player={
-
-
-name:"NGUYEN NGOC ANH",
-
-level:99,
-
-vip:20,
-
-gold:4783,
-
-diamond:2265,
-
-power:25130,
-
-battle:120,
-
-win:95,
-
-lose:25
-
-
-};
-
-
-
-
-
-return(
-
+return (
 
 <div className="profile-page">
 
 
+<header className="profile-header">
 
-<div className="profile-card">
-
-
-<div className="avatar-frame">
-
-
-👑
-
-
+<div className="profile-avatar">
+👤
 </div>
-
-
 
 <h1>
-
-{player.name}
-
+Player
 </h1>
 
+<p>
+Telegram User
+</p>
+
+</header>
 
 
-<div className="vip">
 
-VIP {player.vip}
+<section className="profile-stats">
+
+
+<div>
+⭐
+<strong>
+Level 1
+</strong>
+
+<small>
+EXP 0/1000
+</small>
 
 </div>
 
 
-
-
-<div className="stats">
-
-
 <div>
+👑
+<strong>
+VIP 0
+</strong>
 
-⭐ Level
-
-<b>{player.level}</b>
-
-</div>
-
-
-
-<div>
-
-⚔ Lực chiến
-
-<b>{player.power}</b>
-
-</div>
-
-
-
-<div>
-
-🪙 Gold
-
-<b>{player.gold}</b>
+<small>
+Member
+</small>
 
 </div>
 
 
 
 <div>
+🏆
+<strong>
+Bronze
+</strong>
 
-💎 Diamond
-
-<b>{player.diamond}</b>
+<small>
+Rank
+</small>
 
 </div>
 
 
-</div>
+</section>
 
 
 
 
-
-
-<div className="battle-info">
+<section className="assets">
 
 
 <h2>
-
-⚔ Thành tích
-
+💰 Tài sản
 </h2>
 
 
-<p>
+<div className="asset-box">
 
-🎮 Tổng trận: {player.battle}
+🪙 Gold
 
-</p>
+<b>
+1000
+</b>
 
-
-<p>
-
-🏆 Thắng: {player.win}
-
-</p>
+</div>
 
 
-<p>
+<div className="asset-box">
 
-💀 Thua: {player.lose}
+💎 Diamond
 
-</p>
+<b>
+0
+</b>
 
+</div>
+
+
+<div className="asset-box">
+
+📈 Stock
+
+<b>
+0 đ
+</b>
 
 </div>
 
 
 
+</section>
 
 
 
 
-<div className="profile-buttons">
+<section className="achievement">
 
 
-<button
-
-onClick={()=>nav("/pet")}
-
->
-
-🐾 Quản lý Pet
-
-</button>
+<h2>
+🏆 Thành tích
+</h2>
 
 
-
-<button
-
-onClick={()=>nav("/wallet")}
-
->
-
-💎 Ví tài sản
-
-</button>
-
-
-
-<button
-
-onClick={()=>nav("/ranking")}
-
->
-
-🏆 Xếp hạng
-
-</button>
-
-
-
+<div>
+⛏ Đã đào: 0 lần
 </div>
+
+
+<div>
+🎮 Game thắng: 0
+</div>
+
+
+<div>
+🏰 Guild: Chưa có
+</div>
+
+
+
+</section>
 
 
 
 
 </div>
-
-
-
-</div>
-
 
 )
 
-
 }
-

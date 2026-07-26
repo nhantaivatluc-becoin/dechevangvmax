@@ -1,125 +1,460 @@
 ﻿import React,{useEffect,useState} from "react";
+import {Link} from "react-router-dom";
 import "./Home.css";
-import {getPlayer} from "../services/player";
 
 
 export default function Home(){
 
-const [player,setPlayer]=useState(getPlayer());
 
-const [mining,setMining]=useState(false);
+const [user,setUser]=useState({});
+
+
+const [floating,setFloating]=useState([]);
+
+
+function load(){
+
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem("user")||"{}"
+
+);
+
+
+setUser(data);
+
+
+}
+
+
 
 
 useEffect(()=>{
 
-if(!mining)return;
+
+load();
 
 
-const timer=setInterval(()=>{
 
-let data=getPlayer();
+let timer=setInterval(()=>{
 
-if(data){
 
-data.gold=Number(data.gold||1000)+0.5;
+let data=
 
-localStorage.setItem(
-"dechevang_player",
-JSON.stringify(data)
+JSON.parse(
+
+localStorage.getItem("user")||"{}"
+
 );
 
-setPlayer({...data});
 
-}
+
+data.gold=
+
+Number(data.gold||0)+0.5;
+
+
+
+localStorage.setItem(
+
+"user",
+
+JSON.stringify(data)
+
+);
+
+
+
+window.dispatchEvent(
+
+new Event("financeUpdate")
+
+);
+
+
 
 },60000);
+
+
+
 
 
 return()=>clearInterval(timer);
 
 
-},[mining]);
+
+},[]);
+
+
+
+
+
+
+
+function mineEffect(){
+
+
+
+let id=Date.now();
+
+
+
+setFloating(x=>[
+
+...x,
+
+{
+
+id,
+
+text:"+0.50 🪙"
+
+}
+
+]);
+
+
+
+
+
+
+setTimeout(()=>{
+
+
+setFloating(x=>
+
+x.filter(
+
+a=>a.id!==id
+
+)
+
+);
+
+
+},1500);
+
+
+
+
+
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem("user")||"{}"
+
+);
+
+
+
+data.gold=
+
+Number(data.gold||0)+0.5;
+
+
+
+localStorage.setItem(
+
+"user",
+
+JSON.stringify(data)
+
+);
+
+
+
+window.dispatchEvent(
+
+new Event("financeUpdate")
+
+);
+
+
+load();
+
+
+
+}
+
+
 
 
 
 return(
 
-<div className="home-mobile">
 
 
-<div className="king-card">
+<div className="home-page">
 
 
-<div className="robot">
-🤖
+
+
+
+
+{
+
+floating.map(f=>(
+
+
+<div
+
+className="gold-fly"
+
+key={f.id}
+
+>
+
+{f.text}
+
 </div>
 
 
-<h1>
-ĐẾ CHẾ VÀNG
-</h1>
+))
+
+}
 
 
-<div className="player-name">
 
-👤 {player?.username || "Miner"}
+
+
+
+
+<div className="welcome-box">
+
+
+👋 Xin chào
+
+
+<h2>
+
+{user.username||"Người chơi"}
+
+</h2>
+
+
+
+<p>
+
+ID:
+
+{user.telegramId||"Chưa kết nối"}
+
+</p>
+
 
 </div>
 
 
-<div className="stats">
+
+
+
+
+
+
+
+<div className="home-assets">
+
 
 
 <div>
-💰
-<b>{player?.gold||1000}</b>
-Gold
+
+🪙 GOLD
+
+<h2>
+
+{Number(user.gold||0).toFixed(2)}
+
+</h2>
+
 </div>
+
+
 
 
 <div>
-💎
-<b>{player?.diamond||0}</b>
-Diamond
+
+👑 VIP
+
+<h2>
+
+{user.vip||0}
+
+</h2>
+
+</div>
+
+
+
 </div>
 
 
-<div>
-👑
-<b>VIP {player?.vip||0}</b>
+
+
+
+
+
+
+
+<div className="mine-box">
+
+
+
+<div className="mine-machine">
+
+
+⛏️
+
 </div>
 
 
-</div>
+
+
+<h2>
+
+MÁY ĐÀO VÀNG
+
+</h2>
+
+
+
+<p>
+
+Auto Mining
+
+<br/>
+
++0.50 GOLD / phút
+
+</p>
+
+
+
 
 
 
 <button
 
-className={mining?"mine active":"mine"}
-
-onClick={()=>setMining(!mining)}
+onClick={mineEffect}
 
 >
 
-{mining?"🤖 ĐANG ĐÀO":"⛏ BẮT ĐẦU ĐÀO"}
+⛏️ ĐÀO NGAY
 
 </button>
 
 
 
-<div className="rate">
+</div>
 
-+0.50 Gold / phút
+
+
+
+
+
+
+
+
+<div className="pet-show">
+
+
+<h2>
+
+🐾 Thú của bạn
+
+</h2>
+
+
+
+{
+
+user.pets?.length?
+
+user.pets.map((p,i)=>(
+
+<div
+
+className="pet-item"
+
+key={i}
+
+>
+
+{p.icon}
+
+{p.name}
+
+Lv.{p.level}
 
 </div>
 
 
+))
+
+:
+
+<p>
+
+Chưa có thú
+
+</p>
+
+}
+
+
+
 </div>
 
 
+
+
+
+
+
+
+
+<div className="home-buttons">
+
+
+
+<Link to="/mining">
+
+⛏️ Mining
+
+</Link>
+
+
+
+<Link to="/shop">
+
+🛒 Shop
+
+</Link>
+
+
+
+<Link to="/pet-pvp">
+
+⚔️ PVP
+
+</Link>
+
+
+
 </div>
+
+
+
+
+
+</div>
+
 
 )
+
 
 }

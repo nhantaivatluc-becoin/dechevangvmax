@@ -1,0 +1,60 @@
+﻿.smm-page{
+
+min-height:100vh;
+
+padding:15px;
+
+padding-bottom:100px;
+
+background:#080808;
+
+color:white;
+
+}
+
+
+
+.smm-page h1{
+
+text-align:center;
+
+color:#ffd700;
+
+}
+
+
+
+.smm-card{
+
+padding:18px;
+
+margin:12px 0;
+
+background:#151515;
+
+border-radius:18px;
+
+border:1px solid gold;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+
+
+.smm-card button{
+
+background:#ffd700;
+
+border:0;
+
+border-radius:20px;
+
+padding:10px 25px;
+
+}
+

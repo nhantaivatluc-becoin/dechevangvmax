@@ -1,86 +1,70 @@
-﻿import "./Header.css";
+﻿import React,{useState} from "react";
 
-
-import {
-
-useGame
-
-} from "../store/GameStore";
-
+import HamburgerMenu from "./HamburgerMenu";
 
 
 export default function Header(){
 
 
-
-const {
-
-gold,
-
-diamond,
-
-cashValue
-
-}=useGame();
-
-
-
+const [open,setOpen]=useState(false);
 
 
 return(
 
-
-<div className="header">
-
+<>
 
 
-<div className="logo-mini">
-
-👑
-
-</div>
+<header className="header">
 
 
+<button
 
+className="menu-btn"
 
+onClick={()=>setOpen(true)}
 
-<div className="asset-mini">
+>
 
+☰
 
-
-<div className="asset gold">
-
-🟡 {Math.floor(gold).toLocaleString()}
-
-</div>
+</button>
 
 
 
-<div className="asset diamond">
+<div className="logo">
 
-💎 {diamond.toFixed(6)}
-
-</div>
-
-
-
-<div className="asset money">
-
-💰 {cashValue.toLocaleString()}đ
-
-</div>
-
-
+🔥 VMAX
 
 </div>
 
 
 
 
+<div className="wallet-mini">
+
+💰 Ví
+
 </div>
 
+
+
+</header>
+
+
+
+
+<HamburgerMenu
+
+open={open}
+
+close={()=>setOpen(false)}
+
+/>
+
+
+
+</>
 
 )
-
 
 }

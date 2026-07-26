@@ -1,160 +1,62 @@
-﻿import "./Mining.css";
+﻿import React, { useEffect, useState } from "react";
+import "./Mining.css";
 
-import {useState} from "react";
+export default function Mining(){
 
+const [gold,setGold] = useState(2501);
+const [diamond,setDiamond] = useState(0);
+const [running,setRunning] = useState(false);
 
-export default function Mining({price,onMine}){
+useEffect(()=>{
 
+let timer;
 
-const [effect,setEffect]=useState(false);
-
-const [gain,setGain]=useState(0);
-
-
-
-
-function mine(){
-
-
-const amount =
-
-0.5 *
-
-(price/1000);
-
-
-
-setGain(amount);
-
-
-
-onMine(amount);
-
-
-
-setEffect(true);
-
-
-
-setTimeout(()=>{
-
-
-setEffect(false);
-
-
-},800);
-
-
+if(running){
+ timer=setInterval(()=>{
+   setGold(v=>v+0.5);
+ },60000);
 }
 
+return ()=>clearInterval(timer);
+
+},[running]);
 
 
+return (
+
+<div className="mining-box">
+
+<h1>⛏️ KHAI THÁC VÀNG</h1>
+
+<p>Telegram:8454844333</p>
+
+<p>Tốc độ cơ bản:</p>
+
+<h2>+0.5 GOLD / PHÚT</h2>
 
 
-return(
+<div className="asset">
 
+💰 Vàng:
+<b>{gold.toFixed(0)}</b>
 
-<div
+<br/>
 
-className={
-
-effect
-
-?
-
-"mining-box active"
-
-:
-
-"mining-box"
-
-}
-
->
-
-
-
-
-{
-
-effect &&
-
-<div className="gold-fly">
-
-+{gain.toFixed(2)} 🟡
+💎 Kim cương:
+<b>{diamond.toFixed(0)}</b>
 
 </div>
-
-
-}
-
-
-
-
-
-
-<div className="mine-icon">
-
-
-⛰️💰
-
-
-</div>
-
-
-
-
-<h2>
-
-⛏️ MỎ ĐÀO VÀNG
-
-</h2>
-
-
-
-
-<p>
-
-Giá vàng hiện tại:
-
-</p>
-
-
-<h3>
-
-🟡 {price.toFixed(2)}
-
-</h3>
-
-
-
-
-<p>
-
-Sản lượng thay đổi theo thị trường
-
-</p>
-
-
 
 
 <button
-
-onClick={mine}
-
+onClick={()=>setRunning(!running)}
 >
-
-⛏️ ĐÀO VÀNG
-
+⛏ NHẬN VÀNG
 </button>
-
-
 
 
 </div>
 
-
-)
-
+);
 
 }

@@ -1,96 +1,428 @@
 ﻿import React, { useEffect } from "react";
 
-import { Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation
+} from "react-router-dom";
+
+
+
+import HeaderGame from "./components/HeaderGame";
+import BottomMenu from "./components/BottomMenu";
+import Menu from "./components/Menu";
+
+import MusicManager from "./components/MusicManager";
+import InvestmentProfit from "./components/InvestmentProfit";
+
+
 
 import Home from "./pages/Home";
-import Farm from "./pages/Farm";
-import Wheel from "./pages/Wheel";
-import Shop from "./pages/Shop";
+import Mining from "./pages/Mining";
+import Vip from "./pages/Vip";
+
+import Investment from "./pages/Investment";
+
 import Wallet from "./pages/Wallet";
-import VIP from "./pages/VIP";
+import Deposit from "./pages/Deposit";
+import Withdraw from "./pages/Withdraw";
+
+
+import Farm from "./pages/Farm";
+import Shop from "./pages/Shop";
+
+
 import PVP from "./pages/PVP";
+import PetPVP from "./pages/PetPVP";
 
-import BottomMenu from "./components/BottomMenu";
-import GameHeader from "./components/GameHeader";
 
-import { initTelegram, getTelegramUser } from "./services/telegram";
-import { saveTelegramPlayer } from "./services/player";
+import Friend from "./pages/Friend";
+import Ranking from "./pages/Ranking";
+
+
+import GiftCode from "./components/GiftCode";
+
+
+
+// ADMIN
+
+import Admin from "./pages/Admin";
+import AdminDeposit from "./pages/AdminDeposit";
+import AdminMembers from "./pages/AdminMembers";
+
+
 
 import "./App.css";
 
 
-export default function App(){
+
+
+
+function AppLayout(){
+
+
+
+const location = useLocation();
+
+
+
+const isAdmin =
+location.pathname.startsWith("/admin");
+
+
+
+
+
 
 useEffect(()=>{
 
-async function telegram(){
 
-try{
-
-initTelegram();
-
-const user=getTelegramUser();
-
-if(user){
-
-await saveTelegramPlayer(user);
-
-}
-
-console.log("Telegram user:",user);
+const tg =
+window.Telegram?.WebApp;
 
 
-}catch(e){
 
-console.log(e);
+if(tg){
 
-}
+
+tg.ready();
+
+
+tg.expand();
 
 
 }
 
-
-telegram();
 
 
 },[]);
 
 
 
-return (
+
+
+
+
+
+
+return(
+
+
+
+<div className="app-container">
+
+
+
+
+
+
+{
+!isAdmin &&
 
 <>
 
-<GameHeader />
+<HeaderGame />
+
+<Menu />
+
+</>
+
+}
+
+
+
+
+
+
+
+{
+!isAdmin &&
+
+<MusicManager />
+
+}
+
+
+
+
+
+
+
+{
+!isAdmin &&
+
+<InvestmentProfit />
+
+}
+
+
+
+
+
+
+
+
+
+
+<div className="main-content">
+
+
+
+
 
 
 <Routes>
 
-<Route path="/" element={<Home/>}/>
 
-<Route path="/farm" element={<Farm/>}/>
 
-<Route path="/wheel" element={<Wheel/>}/>
 
-<Route path="/shop" element={<Shop/>}/>
 
-<Route path="/wallet" element={<Wallet/>}/>
 
-<Route path="/vip" element={<VIP/>}/>
+<Route
+path="/"
+element={<Home />}
+/>
 
-<Route path="/pvp" element={<PVP/>}/>
+
+
+<Route
+path="/home"
+element={<Home />}
+/>
+
+
+
+
+
+<Route
+path="/mining"
+element={<Mining />}
+/>
+
+
+
+
+
+<Route
+path="/vip"
+element={<Vip />}
+/>
+
+
+
+
+
+<Route
+path="/investment"
+element={<Investment />}
+/>
+
+
+
+
+
+<Route
+path="/wallet"
+element={<Wallet />}
+/>
+
+
+
+
+
+<Route
+path="/deposit"
+element={<Deposit />}
+/>
+
+
+
+
+
+<Route
+path="/withdraw"
+element={<Withdraw />}
+/>
+
+
+
+
+
+<Route
+path="/farm"
+element={<Farm />}
+/>
+
+
+
+
+
+<Route
+path="/shop"
+element={<Shop />}
+/>
+
+
+
+
+
+<Route
+path="/pvp"
+element={<PVP />}
+/>
+
+
+
+
+
+<Route
+path="/pet-pvp"
+element={<PetPVP />}
+/>
+
+
+
+
+
+<Route
+path="/friend"
+element={<Friend />}
+/>
+
+
+
+
+
+<Route
+path="/ranking"
+element={<Ranking />}
+/>
+
+
+
+
+
+<Route
+path="/gift-code"
+element={<GiftCode />}
+/>
+
+
+
+
+
+
+
+{/* ADMIN CENTER */}
+
+
+
+<Route
+path="/admin"
+element={<Admin />}
+/>
+
+
+
+
+
+<Route
+path="/admin-deposit"
+element={<AdminDeposit />}
+/>
+
+
+
+
+
+<Route
+path="/admin-members"
+element={<AdminMembers />}
+/>
+
+
+
+
+
+
+
+
+
+<Route
+path="*"
+element={<Home />}
+/>
+
+
+
+
 
 
 </Routes>
 
 
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+{
+!isAdmin &&
+
 <BottomMenu />
 
+}
 
-</>
 
 
-);
+
+
+
+
+
+</div>
+
+
+)
+
+
+
+}
+
+
+
+
+
+
+
+
+
+export default function App(){
+
+
+return(
+
+
+<BrowserRouter>
+
+
+<AppLayout />
+
+
+</BrowserRouter>
+
+
+)
 
 
 }

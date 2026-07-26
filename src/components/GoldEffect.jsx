@@ -1,33 +1,47 @@
-﻿import {useEffect,useState} from "react";
+﻿import React,{useEffect,useState} from "react";
 import "./GoldEffect.css";
 
 
 export default function GoldEffect(){
 
 
-const [gold,setGold]=useState([]);
-
+const [coins,setCoins]=useState([]);
 
 
 useEffect(()=>{
 
 
-let timer=setInterval(()=>{
+const timer=setInterval(()=>{
 
 
-let id=Date.now();
+const id=Date.now();
 
 
-setGold(x=>[
+setCoins(c=>[
 
-...x,
+...c,
 
 {
 id,
-x:Math.random()*90
+left:Math.random()*90
 }
 
 ]);
+
+
+
+setTimeout(()=>{
+
+
+setCoins(c=>
+
+c.filter(x=>x.id!==id)
+
+);
+
+
+},3000);
+
 
 
 },800);
@@ -42,44 +56,41 @@ return()=>clearInterval(timer);
 
 
 
-
 return(
 
-<div className="gold-effect">
+<>
 
 
 {
 
-gold.map(g=>(
+coins.map(c=>(
 
 
 <div
 
-key={g.id}
+key={c.id}
 
-className="fly-gold"
+className="gold-fall"
 
 style={{
-
-left:g.x+"%"
-
+left:c.left+"%"
 }}
 
 >
 
-💰 +50
+🪙
 
 </div>
 
 
 ))
 
-
 }
 
 
-</div>
+</>
 
 )
+
 
 }

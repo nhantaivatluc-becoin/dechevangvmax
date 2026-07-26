@@ -1,92 +1,57 @@
-﻿import "./Games.css";
-
-import Header from "../components/Header";
-import BottomMenu from "../components/BottomMenu";
-import SideMenu from "../components/SideMenu";
-import AssetHUD from "../components/AssetHUD";
+﻿import React from "react";
+import "./Games.css";
 
 
 export default function Games(){
 
-
 const games=[
 
-"🃏 Tiến Lên",
-"🀄 Cờ Tướng",
-"🐴 Cờ Cá Ngựa",
-"🎯 Bầu Cua",
-"🎲 Xóc Đĩa",
-"🪁 Ô Ăn Quan",
-
-"🎣 Bắn Cá",
-"⚔️ PvP Arena",
-"🏰 Xây Thành",
-"🚗 Đua Xe",
-"🎰 Slot",
-"♠️ Poker",
-"🌎 MMORPG"
+["🐔","Đá gà mini"],
+["🏇","Đua ngựa"],
+["♟️","Cờ vua"],
+["🎯","Mini Game"],
+["🎲","May mắn"]
 
 ];
 
 
-
 return(
-
 
 <div className="games-page">
 
 
-<SideMenu/>
-
-<Header/>
-
-<AssetHUD/>
-
-
-
-
-
 <h1>
-
-🎮 GAME CENTER
-
+🎮 TRÒ CHƠI
 </h1>
 
 
+<p>
+Khu vui chơi giải trí
+</p>
 
-<div className="games-list">
 
 
 {
 
-games.map((game,index)=>(
+games.map((g,i)=>(
 
+<div className="game-card" key={i}>
 
-<div
+<div className="game-icon">
+{g[0]}
+</div>
 
-className="game-box"
-
-key={index}
-
->
-
-
-<h2>
-
-{game}
-
-</h2>
+<span>
+{g[1]}
+</span>
 
 
 <button>
-
-Vào game
-
+CHƠI
 </button>
 
 
 </div>
-
 
 ))
 
@@ -94,18 +59,8 @@ Vào game
 }
 
 
-
 </div>
-
-
-
-<BottomMenu/>
-
-
-</div>
-
 
 )
-
 
 }

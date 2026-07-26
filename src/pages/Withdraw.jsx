@@ -1,4 +1,4 @@
-﻿import {useState} from "react";
+﻿import React,{useState,useEffect} from "react";
 import "./Withdraw.css";
 
 
@@ -6,152 +6,319 @@ export default function Withdraw(){
 
 
 
+const [user,setUser]=useState({});
+
+
 const [diamond,setDiamond]=useState("");
 
-const [bank,setBank]=useState("");
+const [bank,setBank]=useState("BIDV");
 
 const [account,setAccount]=useState("");
 
 const [name,setName]=useState("");
 
-const [qr,setQr]=useState("");
+const [message,setMessage]=useState("");
 
 
 
 
-const banks=[
 
-"Vietcombank",
-
-"BIDV",
-
-"VietinBank",
-
-"Agribank",
-
-"MB Bank",
-
-"Techcombank",
-
-"ACB",
-
-"Sacombank",
-
-"VPBank",
-
-"TPBank",
-
-"SHB",
-
-"HDBank",
-
-"VIB",
-
-"SeABank",
-
-"OCB",
-
-"MSB"
-
-];
+useEffect(()=>{
 
 
-
-
-function submit(){
-
-
-const money=
-
-Number(diamond)*250;
-
-
-alert(
-
-"Yêu cầu rút "+money+"đ đã gửi"
-
+let data=
+JSON.parse(
+localStorage.getItem("user")||"{}"
 );
 
 
+setUser(data);
+
+
+},[]);
+
+
+
+
+
+
+
+
+function withdraw(){
+
+
+
+let amount=
+Number(diamond);
+
+
+
+
+
+if(amount<=0){
+
+
+setMessage(
+"❌ Nhập số Diamond cần rút"
+);
+
+
+return;
+
+
 }
+
+
+
+
+let data=
+JSON.parse(
+localStorage.getItem("user")||"{}"
+);
+
+
+
+
+
+if(Number(data.diamond||0)<amount){
+
+
+setMessage(
+"❌ Không đủ Diamond"
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+
+
+let vnd=
+
+
+amount*2;
+
+
+
+
+
+
+data.diamond=
+Number(data.diamond||0)
+-
+amount;
+
+
+
+
+
+
+data.withdrawRequest={
+
+
+diamond:amount,
+
+
+vnd:vnd,
+
+
+bank:bank,
+
+
+account:account,
+
+
+name:name,
+
+
+status:"WAITING",
+
+
+time:new Date().toLocaleString()
+
+
+};
+
+
+
+
+
+
+localStorage.setItem(
+"user",
+JSON.stringify(data)
+);
+
+
+
+
+setUser(data);
+
+
+
+setMessage(
+"✅ Đã gửi yêu cầu rút tiền"
+);
+
+
+
+
+}
+
+
+
+
+
 
 
 
 
 return(
 
+
 <div className="withdraw-page">
 
 
-<div className="withdraw-box">
+
 
 
 <h1>
 
-🏦 RÚT TIỀN QR
+💎 RÚT TIỀN
 
 </h1>
 
 
 
 
-<p>
 
-💎 Nhập kim cương cần rút
-
-</p>
+<div className="withdraw-card">
 
 
-<input
 
-placeholder="Nhập số kim cương"
+<h2>
 
-value={diamond}
+💰 Quy đổi
 
-onChange={e=>setDiamond(e.target.value)}
+</h2>
 
-/>
 
 
 
 <p>
 
-Ngân hàng
+🪙 1.800.000 Gold
 
 </p>
+
+
+
+<p>
+
+💎 = 0.01 Diamond
+
+</p>
+
+
+
+
+<p>
+
+💵 0.01 Diamond
+
+</p>
+
+
+
+<p className="money">
+
+= 0.020 VNĐ
+
+</p>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div className="withdraw-card">
+
+
+
+<h2>
+
+🏦 THÔNG TIN NHẬN TIỀN
+
+</h2>
+
+
 
 
 
 <select
 
-onChange={e=>setBank(e.target.value)}
+value={bank}
+
+onChange={
+e=>setBank(e.target.value)
+}
 
 >
 
 
 <option>
 
-Chọn ngân hàng
+BIDV
 
 </option>
 
 
-{
+<option>
 
-banks.map((b,i)=>(
-
-<option key={i}>
-
-{b}
+Vietcombank
 
 </option>
 
-))
 
-}
+<option>
+
+Techcombank
+
+</option>
+
+
+<option>
+
+MB Bank
+
+</option>
+
+
+<option>
+
+VPBank
+
+</option>
 
 
 </select>
+
+
+
 
 
 
@@ -159,9 +326,15 @@ banks.map((b,i)=>(
 
 placeholder="Tên chủ tài khoản"
 
-onChange={e=>setName(e.target.value)}
+value={name}
+
+onChange={
+e=>setName(e.target.value)
+}
 
 />
+
+
 
 
 
@@ -169,36 +342,64 @@ onChange={e=>setName(e.target.value)}
 
 placeholder="Số tài khoản"
 
-onChange={e=>setAccount(e.target.value)}
+value={account}
+
+onChange={
+e=>setAccount(e.target.value)
+}
 
 />
 
 
 
-<p>
+</div>
 
-QR ngân hàng
 
-</p>
+
+
+
+
+
+
+
+<div className="withdraw-card">
+
+
+
+<h2>
+
+💎 Số Diamond rút
+
+</h2>
+
+
 
 
 <input
 
-type="file"
+type="number"
 
-onChange={e=>setQr(e.target.files[0]?.name)}
+placeholder="Nhập Diamond"
 
- />
+value={diamond}
+
+onChange={
+e=>setDiamond(e.target.value)
+}
+
+/>
+
+
 
 
 
 <button
 
-onClick={submit}
+onClick={withdraw}
 
 >
 
-💸 Gửi yêu cầu rút
+🚀 GỬI YÊU CẦU RÚT
 
 </button>
 
@@ -207,8 +408,28 @@ onClick={submit}
 </div>
 
 
+
+
+
+
+
+<h3>
+
+{message}
+
+</h3>
+
+
+
+
+
+
+
 </div>
 
+
 )
+
+
 
 }

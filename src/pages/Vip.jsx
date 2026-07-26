@@ -1,103 +1,24 @@
-﻿import "./Vip.css";
-
-
-import Header from "../components/Header";
-
-import BottomMenu from "../components/BottomMenu";
-
-import SideMenu from "../components/SideMenu";
-
-import AssetHUD from "../components/AssetHUD";
-
-
-import {
-
-useGame
-
-} from "../store/GameStore";
-
-
-import {
-
-useNotification
-
-} from "../store/NotificationStore";
-
-
-
-export default function Vip(){
-
-
-
-const {
-
-gold,
-
-vip,
-
-setVip
-
-}=useGame();
-
-
-
-
-
-const {
-
-notify
-
-}=useNotification();
-
-
-
-
+﻿import React,{useEffect,useState} from "react";
+import "./Vip.css";
 
 
 const vipList=[
 
-
-{
-level:1,
-cost:10000,
-bonus:5
-},
-
-
-{
-level:2,
-cost:50000,
-bonus:10
-},
-
-
-{
-level:3,
-cost:100000,
-bonus:15
-},
-
-
-{
-level:5,
-cost:500000,
-bonus:25
-},
-
-
-{
-level:10,
-cost:2000000,
-bonus:50
-},
-
-
-{
-level:15,
-cost:10000000,
-bonus:100
-}
-
+{level:1,price:50000,bonus:5},
+{level:2,price:100000,bonus:10},
+{level:3,price:200000,bonus:15},
+{level:4,price:500000,bonus:25},
+{level:5,price:1000000,bonus:40},
+{level:6,price:2000000,bonus:60},
+{level:7,price:5000000,bonus:80},
+{level:8,price:10000000,bonus:100},
+{level:9,price:20000000,bonus:150},
+{level:10,price:50000000,bonus:200},
+{level:11,price:100000000,bonus:300},
+{level:12,price:200000000,bonus:400},
+{level:13,price:500000000,bonus:600},
+{level:14,price:1000000000,bonus:800},
+{level:15,price:2000000000,bonus:1000}
 
 ];
 
@@ -105,22 +26,30 @@ bonus:100
 
 
 
-
-function buyVip(level,cost){
-
+export default function Vip(){
 
 
-if(gold < cost){
+
+const [user,setUser]=useState({});
 
 
-notify(
 
-"❌ Không đủ Gold để nâng cấp VIP"
+
+
+function load(){
+
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem("user")||"{}"
 
 );
 
 
-return;
+
+setUser(data);
 
 
 }
@@ -128,27 +57,105 @@ return;
 
 
 
-setVip(level);
+useEffect(()=>{
+
+
+load();
+
+
+},[]);
 
 
 
-notify(
 
-"⭐ Chúc mừng Vương Giả đã nâng cấp thành công VIP "
 
-+
 
-level
 
-+
+function buyVip(v){
 
-" 🚀"
+
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem("user")||"{}"
+
+);
+
+
+
+
+
+
+let orders=
+
+JSON.parse(
+
+localStorage.getItem("vipOrders")||"[]"
+
+);
+
+
+
+
+
+orders.push({
+
+
+id:Date.now(),
+
+
+telegramId:data.telegramId,
+
+
+username:data.username,
+
+
+vip:v.level,
+
+
+amount:v.price,
+
+
+status:"pending",
+
+
+time:new Date().toLocaleString()
+
+
+});
+
+
+
+
+
+
+localStorage.setItem(
+
+"vipOrders",
+
+JSON.stringify(orders)
+
+);
+
+
+
+
+
+
+alert(
+
+"Đã tạo đơn mua VIP. Chờ Admin duyệt"
 
 );
 
 
 
 }
+
+
+
 
 
 
@@ -160,19 +167,12 @@ return(
 <div className="vip-page">
 
 
-<SideMenu/>
-
-<Header/>
-
-<AssetHUD/>
-
-
 
 
 
 <h1>
 
-⭐ VIP SYSTEM
+👑 VIP CENTER
 
 </h1>
 
@@ -180,14 +180,16 @@ return(
 
 
 
-<div className="vip-current">
+<div className="current-vip">
 
 
-<h2>
+VIP hiện tại:
 
-VIP hiện tại: {vip}
+<b>
 
-</h2>
+VIP {user.vip||0}
+
+</b>
 
 
 </div>
@@ -198,57 +200,72 @@ VIP hiện tại: {vip}
 
 
 
+
+<div className="vip-grid">
+
+
 {
 
-vipList.map((item,index)=>(
+vipList.map((v,i)=>(
 
 
 <div
 
 className="vip-card"
 
-key={index}
+key={i}
 
 >
 
 
+<div className="vip-icon">
+
+👑
+
+</div>
+
+
+
+
 <h2>
 
-⭐ VIP {item.level}
+VIP {v.level}
 
 </h2>
 
 
-<p>
-
-⚡ Bonus +{item.bonus}%
-
-</p>
 
 
 <p>
 
-🟡 {item.cost.toLocaleString()} Gold
+⚡ Mining +{v.bonus}%
 
 </p>
+
+
+
+
+<h3>
+
+{v.price.toLocaleString()}
+
+VNĐ
+
+</h3>
+
 
 
 
 <button
 
-onClick={()=>buyVip(
-
-item.level,
-
-item.cost
-
-)}
+onClick={()=>buyVip(v)}
 
 >
 
-NÂNG CẤP
+MUA VIP
 
 </button>
+
 
 
 
@@ -258,14 +275,11 @@ NÂNG CẤP
 
 ))
 
-
 }
 
 
 
-
-
-<BottomMenu/>
+</div>
 
 
 
@@ -274,8 +288,8 @@ NÂNG CẤP
 </div>
 
 
-)
 
+)
 
 
 }

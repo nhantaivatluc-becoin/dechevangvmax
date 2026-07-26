@@ -1,36 +1,264 @@
-﻿import "./Mining.css";
-
-
-import Header from "../components/Header";
-
-import BottomMenu from "../components/BottomMenu";
-
-import SideMenu from "../components/SideMenu";
-
-import AssetHUD from "../components/AssetHUD";
-
-
-import {
-useGame
-} from "../store/GameStore";
-
+﻿import React,{useEffect,useState} from "react";
+import "./Mining.css";
 
 
 export default function Mining(){
 
 
-
-const {
-
-
-mine,
-
-goldPrice,
-
-gold
+const [user,setUser]=useState({});
 
 
-}=useGame();
+const [auto,setAuto]=useState(false);
+
+
+const [gold,setGold]=useState(0);
+
+
+
+function load(){
+
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem("user")||"{}"
+
+);
+
+
+
+setUser(data);
+
+
+setGold(
+
+Number(data.gold||0)
+
+);
+
+
+
+}
+
+
+
+
+
+useEffect(()=>{
+
+
+load();
+
+
+},[]);
+
+
+
+
+
+
+
+
+function getPetBonus(){
+
+
+let bonus=0;
+
+
+user.pets?.forEach(p=>{
+
+
+bonus+=Number(p.bonus||0);
+
+
+});
+
+
+
+return bonus;
+
+
+}
+
+
+
+
+
+
+
+
+
+function mine(){
+
+
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem("user")||"{}"
+
+);
+
+
+
+
+
+let petBonus=getPetBonus();
+
+
+
+
+
+let amount=
+
+1+(petBonus/100);
+
+
+
+
+
+data.gold=
+
+Number(data.gold||0)+amount;
+
+
+
+
+
+localStorage.setItem(
+
+"user",
+
+JSON.stringify(data)
+
+);
+
+
+
+
+
+setGold(data.gold);
+
+
+
+window.dispatchEvent(
+
+new Event("financeUpdate")
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+
+useEffect(()=>{
+
+
+
+if(!auto)
+
+return;
+
+
+
+
+
+let timer=setInterval(()=>{
+
+
+mine();
+
+
+},10000);
+
+
+
+
+
+return()=>clearInterval(timer);
+
+
+
+},[auto,user]);
+
+
+
+
+
+
+
+
+
+function upgrade(){
+
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem("user")||"{}"
+
+);
+
+
+
+let cost=1000;
+
+
+
+if(Number(data.gold||0)<cost){
+
+
+alert("Không đủ GOLD");
+
+
+return;
+
+
+}
+
+
+
+
+data.gold-=cost;
+
+
+
+data.miningLevel=
+
+Number(data.miningLevel||1)+1;
+
+
+
+
+
+localStorage.setItem(
+
+"user",
+
+JSON.stringify(data)
+
+);
+
+
+
+load();
+
+
+
+}
+
+
+
 
 
 
@@ -40,17 +268,8 @@ gold
 return(
 
 
+
 <div className="mining-page">
-
-
-
-<SideMenu/>
-
-
-<Header/>
-
-
-<AssetHUD/>
 
 
 
@@ -58,7 +277,7 @@ return(
 
 <h1>
 
-⛏️ KHU ĐÀO VÀNG
+⛏️ ĐÀO VÀNG
 
 </h1>
 
@@ -67,13 +286,20 @@ return(
 
 
 
-<div className="mine-card">
 
 
+<div className="gold-box">
 
-<div className="mine-animation">
 
-⛰️💰
+🪙 GOLD
+
+
+<h2>
+
+{gold.toFixed(2)}
+
+</h2>
+
 
 </div>
 
@@ -81,34 +307,38 @@ return(
 
 
 
-<h2>
-
-MỎ VÀNG REALTIME
-
-</h2>
 
 
 
-<p>
+<div className="mine-machine">
 
-Giá vàng:
 
-🟡 {goldPrice.toFixed(2)}
+⛏️
 
-</p>
+</div>
+
+
+
+
 
 
 
 
 <p>
 
-Tài sản:
 
-{Math.floor(gold).toLocaleString()}
+🐾 Bonus thú:
 
-Gold
+<b>
+
++{getPetBonus()}%
+
+</b>
+
 
 </p>
+
+
 
 
 
@@ -117,36 +347,91 @@ Gold
 
 <button
 
+className="mine-btn"
+
 onClick={mine}
 
 >
 
-⛏️ ĐÀO NGAY
+⛏️ ĐÀO VÀNG
 
 </button>
 
 
 
 
+
+
+
+<button
+
+className={
+
+auto?
+
+"auto active":
+
+"auto"
+
+}
+
+onClick={()=>setAuto(!auto)}
+
+>
+
+
+⚡
+
+{
+
+auto?
+
+"AUTO ON":
+
+"AUTO OFF"
+
+}
+
+
+
+</button>
+
+
+
+
+
+
+
+
+<button
+
+className="upgrade"
+
+onClick={upgrade}
+
+>
+
+⬆️ Nâng cấp máy
+
+<br/>
+
+1000 GOLD
+
+</button>
+
+
+
+
+
+
+
+
+
 </div>
 
-
-
-
-
-
-
-<BottomMenu/>
-
-
-
-
-
-</div>
 
 
 )
-
 
 
 }

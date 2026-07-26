@@ -1,139 +1,145 @@
-﻿import "./Pet.css";
-
-
-import Header from "../components/Header";
-
-import BottomMenu from "../components/BottomMenu";
-
-import SideMenu from "../components/SideMenu";
-
-import AssetHUD from "../components/AssetHUD";
-
+﻿import React from "react";
 
 import {
-useGame
-} from "../store/GameStore";
-
-
-
-export default function Pet(){
-
-
-
-const {
-
-gold,
-
-pet,
-
-petBonus,
-
-buyPet
-
-}=useGame();
-
-
-
-
+useNavigate
+} from "react-router-dom";
 
 
 const pets=[
 
 
 {
-name:"🐶 Pet thường",
-cost:0,
-bonus:1
+icon:"🐶",
+name:"Chó Vàng",
+level:5,
+power:"+5% Mining"
 },
 
 
 {
-name:"🐱 Pet bạc",
-cost:5000,
-bonus:1.5
+icon:"🐱",
+name:"Mèo May Mắn",
+level:8,
+power:"+10% Luck"
 },
 
 
 {
-name:"🐯 Pet vàng",
-cost:20000,
-bonus:2
+icon:"🐯",
+name:"Hổ Vàng",
+level:12,
+power:"+20% Power"
 },
 
 
 {
-name:"🐉 Pet rồng",
-cost:100000,
-bonus:3
+icon:"🐲",
+name:"Rồng Vàng",
+level:20,
+power:"+50% Mining"
+},
+
+
+{
+icon:"🦅",
+name:"Đại Bàng",
+level:15,
+power:"+25% Speed"
 }
-
 
 
 ];
 
 
 
+export default function Pet(){
+
+
+const navigate=useNavigate();
 
 
 
 return(
 
-
 <div className="pet-page">
 
 
 
-<SideMenu/>
-
-
-<Header/>
-
-
-<AssetHUD/>
-
-
-
-
-
-<h1>
-
-🐾 PET ĐÀO VÀNG
-
-</h1>
-
-
-
-
-
-<div className="current-pet">
-
-
 <h2>
 
-{pet}
+🐾 PET CENTER
 
 </h2>
 
 
 
+
+<div className="pet-follow">
+
+
+<h3>
+
+🐲 Pet đang theo
+
+</h3>
+
+
+<div className="follow-pet">
+
+🐲
+
+</div>
+
+
+
+<h3>
+
+Rồng Vàng
+
+</h3>
+
+
+
 <p>
 
-⚡ Bonus:
-
-x{petBonus}
+⭐ Level 20
 
 </p>
 
 
-
 <p>
 
-🟡 Gold:
-
-{Math.floor(gold).toLocaleString()}
+⚡ +50% Mining
 
 </p>
 
+
+</div>
+
+
+
+
+
+<div className="pet-status">
+
+
+❤️ Sức khỏe
+
+<div className="bar">
+
+<div></div>
+
+</div>
+
+
+
+⚡ Năng lượng
+
+<div className="bar energy">
+
+<div></div>
+
+</div>
 
 
 </div>
@@ -143,22 +149,22 @@ x{petBonus}
 
 
 
-<h2>
 
-Mua Pet
+<h3>
 
-</h2>
+📦 Kho thú
 
-
-
+</h3>
 
 
+
+
+<div className="pet-grid">
 
 
 {
 
-pets.map((item,index)=>(
-
+pets.map((pet,index)=>(
 
 
 <div
@@ -170,9 +176,17 @@ key={index}
 >
 
 
+<div className="pet-icon">
+
+{pet.icon}
+
+</div>
+
+
+
 <h3>
 
-{item.name}
+{pet.name}
 
 </h3>
 
@@ -180,9 +194,7 @@ key={index}
 
 <p>
 
-⚡ Tăng đào:
-
-x{item.bonus}
+⭐ Level {pet.level}
 
 </p>
 
@@ -190,32 +202,16 @@ x{item.bonus}
 
 <p>
 
-💰 Giá:
-
-{item.cost.toLocaleString()}
-
-Gold
+{pet.power}
 
 </p>
 
 
 
 
-<button
+<button>
 
-onClick={()=>buyPet(
-
-item.name,
-
-item.cost,
-
-item.bonus
-
-)}
-
->
-
-MUA PET
+Trang bị
 
 </button>
 
@@ -224,27 +220,51 @@ MUA PET
 </div>
 
 
-
 ))
 
 
 }
 
 
+</div>
 
 
 
 
 
-<BottomMenu/>
+<div className="pet-action">
 
+
+<button
+
+onClick={()=>navigate("/pet-shop")}
+
+>
+
+🛒 Mua thêm thú
+
+</button>
+
+
+
+<button
+
+onClick={()=>navigate("/fusion")}
+
+>
+
+🔥 Ghép thú
+
+</button>
 
 
 </div>
 
 
+
+
+</div>
+
 )
-
-
 
 }

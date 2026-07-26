@@ -1,15 +1,21 @@
 ﻿import React,{useState} from "react";
 
-import {useNavigate} from "react-router-dom";
+import admin from "../data/admin";
+
+import {
+saveAdminLogin
+}
+from "../utils/authAdmin";
+
 
 import "./AdminLogin.css";
 
 
-export default function AdminLogin(){
+
+export default function AdminLogin({setPage}){
 
 
-const nav=useNavigate();
-
+const [user,setUser]=useState("");
 
 const [pass,setPass]=useState("");
 
@@ -21,29 +27,28 @@ const [error,setError]=useState("");
 function login(){
 
 
-if(pass==="11122003"){
+if(
+
+user===admin.username &&
+
+pass===admin.password
+
+){
 
 
-localStorage.setItem(
-
-"admin",
-
-"true"
-
-);
+saveAdminLogin();
 
 
-nav("/admin-vip");
+setPage("admin");
 
 
+}
 
-}else{
+else{
 
 
 setError(
-
-"Sai mật khẩu"
-
+"Sai tài khoản hoặc mật khẩu"
 );
 
 
@@ -58,18 +63,27 @@ setError(
 
 return(
 
-
 <div className="admin-login">
-
-
-<div className="admin-box">
 
 
 <h1>
 
-🔐 ADMIN
+🔐 Admin Login
 
 </h1>
+
+
+
+<input
+
+placeholder="Tài khoản"
+
+value={user}
+
+onChange={e=>setUser(e.target.value)}
+
+/>
+
 
 
 
@@ -88,11 +102,7 @@ onChange={e=>setPass(e.target.value)}
 
 
 
-<button
-
-onClick={login}
-
->
+<button onClick={login}>
 
 Đăng nhập
 
@@ -100,21 +110,21 @@ onClick={login}
 
 
 
+{
+
+error &&
 
 <p>
 
-{error}
+❌ {error}
 
 </p>
 
+}
+
+
 
 </div>
-
-
-
-</div>
-
-
 
 )
 

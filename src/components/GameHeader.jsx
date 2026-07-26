@@ -1,12 +1,8 @@
 ﻿import React from "react";
-import { getPlayer } from "../services/player";
 import "./GameHeader.css";
 
 
 export default function GameHeader(){
-
-const player = getPlayer();
-
 
 return (
 
@@ -15,26 +11,21 @@ return (
 
 <div className="player-info">
 
+
 <div className="avatar">
-
-👤
-
+👑
 </div>
 
 
 <div>
 
-<div className="player-name">
-
-{player?.username || "Player"}
-
+<div className="game-name">
+DECHEVANGVMAX
 </div>
 
 
 <div className="vip">
-
-👑 VIP {player?.vip || 0}
-
+VIP 0
 </div>
 
 
@@ -45,19 +36,26 @@ return (
 
 
 
-<div className="resource-box">
+<div className="currency">
+
 
 <div>
 💰
-<br/>
-{player?.gold || 1000}
+<span>2500</span>
 </div>
+
 
 
 <div>
 💎
-<br/>
-{player?.diamond || 0}
+<span>0</span>
+</div>
+
+
+
+<div>
+🇻🇳
+<span>0đ</span>
 </div>
 
 

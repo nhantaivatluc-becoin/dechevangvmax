@@ -1,30 +1,63 @@
 ﻿.stock-page{
 
 min-height:100vh;
-background:#080400;
+background:#080808;
 color:white;
+font-family:Arial;
+padding-bottom:90px;
+
+}
+
+
+.stock-header{
+
 padding:20px;
-text-align:center;
+border-bottom:2px solid #ffd400;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+
+.stock-header h1{
+
+color:#ffd400;
+font-size:24px;
 
 }
 
 
 
-.stock-page h1{
+.market-box{
 
-color:#00ffff;
-text-shadow:0 0 20px cyan;
+width:90%;
+margin:20px auto;
+background:#111;
+border-radius:25px;
+padding:20px;
 
 }
 
 
 
-.money{
+.market-tabs{
 
-border:2px solid gold;
-padding:15px;
+display:flex;
+gap:10px;
+
+}
+
+
+
+.market-tabs button{
+
+flex:1;
+padding:12px;
 border-radius:20px;
-margin:20px;
+border:1px solid #ffd400;
+background:#000;
+color:white;
 
 }
 
@@ -32,9 +65,8 @@ margin:20px;
 
 .stock-list{
 
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+width:90%;
+margin:auto;
 
 }
 
@@ -42,91 +74,87 @@ gap:20px;
 
 .stock-card{
 
-background:#050505;
-border:2px solid #00ffff;
+background:#111;
+border:1px solid #333;
 border-radius:20px;
-padding:20px;
-box-shadow:0 0 20px #00ffff;
+padding:15px;
+margin-bottom:15px;
+display:flex;
+align-items:center;
+justify-content:space-between;
 
 }
 
 
 
-.stock-card h2{
+.stock-card h3{
 
-color:#ffd700;
-
-}
-
-
-
-.price{
-
-font-size:35px;
-color:#00ff99;
+color:#ffd400;
 
 }
 
 
 
-.up{
+.stock-card strong{
 
-color:#00ff00;
-
-}
-
-
-
-.down{
-
-color:red;
+display:block;
 
 }
 
 
 
-button{
+.green{
 
-margin:8px;
-padding:12px 20px;
+color:#00ff66;
+
+}
+
+
+.red{
+
+color:#ff3333;
+
+}
+
+
+
+.stock-card button{
+
+background:linear-gradient(90deg,#ff9900,#ffff00);
+border:0;
+padding:10px 20px;
 border-radius:20px;
-border:none;
-background:#ffd700;
 font-weight:bold;
-cursor:pointer;
 
 }
 
-.mini-chart{
 
-width:100%;
 
-height:70px;
+.portfolio{
 
-margin:10px 0;
+width:90%;
+margin:30px auto;
 
-background:#050505;
+}
 
+
+
+.portfolio h2{
+
+color:#ffd400;
+
+}
+
+
+
+.asset{
+
+background:#111;
+padding:15px;
 border-radius:15px;
-
-overflow:hidden;
-
-}
-
-
-
-
-.stock-card:hover{
-
-
-transform:translateY(-5px);
-
-box-shadow:
-
-0 0 25px cyan;
-
+margin-top:10px;
+border:1px solid #555;
 
 }
-
 
 

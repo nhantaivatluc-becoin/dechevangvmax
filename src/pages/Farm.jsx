@@ -1,32 +1,68 @@
-﻿import "./Farm.css";
-
-import {useState} from "react";
+﻿import React,{useState} from "react";
+import "./Farm.css";
 
 
 export default function Farm(){
 
 
-const [level,setLevel]=useState(1);
+const [pets,setPets]=useState([
 
-const [gold,setGold]=useState(0);
+{
+id:1,
+name:"🐶 Cún Vàng",
+level:1,
+buff:5
+},
+
+{
+id:2,
+name:"🐲 Rồng Vàng",
+level:1,
+buff:10
+},
+
+{
+id:3,
+name:"🦊 Cáo Hoàng Kim",
+level:1,
+buff:15
+}
+
+
+]);
 
 
 
-function upgrade(){
+function upgrade(id){
 
 
-setLevel(level+1);
+setPets(
+
+pets.map(p=>{
+
+
+if(p.id===id){
+
+
+return{
+
+...p,
+
+level:p.level+1,
+
+buff:p.buff+5
+
+}
 
 
 }
 
 
+return p;
 
-function harvest(){
 
+})
 
-setGold(
-gold + (level * 20)
 );
 
 
@@ -34,94 +70,113 @@ gold + (level * 20)
 
 
 
+
 return(
 
 
-<div className="farm">
+<div className="farm-page">
+
 
 
 <h1>
 
-🐾 TRANG TRẠI PET
+🌾 PET FARM
 
 </h1>
 
 
 
-<div className="pet-card">
+<div className="farm-banner">
 
 
+🐾
 
-<div className="pet">
+<br/>
 
-🐉
+Trang trại thú cưng Đế Chế Vàng
+
+<p>
+
+Pet hỗ trợ khai thác Gold
+
+</p>
+
 
 </div>
 
 
 
-<h2>
 
-Rồng Vàng
 
-</h2>
+
+
+<div className="pet-list">
+
+
+{
+
+pets.map(p=>(
+
+
+<div
+
+className="pet-card"
+
+key={p.id}
+
+>
+
+
+<div className="pet-icon">
+
+{p.name}
+
+</div>
+
+
+<h3>
+
+Level {p.level}
+
+</h3>
 
 
 
 <p>
 
-⭐ Level:
+⛏ Buff đào vàng:
+
+<br/>
 
 <b>
-{level}
+
++{p.buff}%
+
 </b>
 
 </p>
 
-
-
-<p>
-
-⚔️ Power:
-
-<b>
-{level*50}
-</b>
-
-</p>
-
-
-
-<p>
-
-🟡 Gold thu hoạch:
-
-<b>
-{gold}
-</b>
-
-</p>
 
 
 
 <button
-onClick={upgrade}
+
+onClick={()=>upgrade(p.id)}
+
 >
 
-⬆️ NÂNG CẤP PET
+🆙 NÂNG CẤP
 
 </button>
 
 
+</div>
 
 
-<button
-onClick={harvest}
->
+))
 
-🌾 THU HOẠCH
 
-</button>
+}
 
 
 
@@ -130,32 +185,37 @@ onClick={harvest}
 
 
 
-<div className="farm-info">
+
+
+
+<div className="food-box">
 
 
 <h2>
 
-📜 Thông tin
+🍖 Thức ăn Pet
 
 </h2>
 
 
 <p>
-🐉 Pet tự động đào vàng
+
+Tăng EXP và sức mạnh Pet
+
 </p>
 
 
-<p>
-⚡ Level càng cao nhận càng nhiều Gold
-</p>
+<button>
 
+MUA THỨC ĂN
 
-<p>
-🔥 Mở khóa Pet hiếm sau này
-</p>
+</button>
 
 
 </div>
+
+
+
 
 
 
